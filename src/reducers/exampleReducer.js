@@ -4,7 +4,7 @@ const inintialState = {
   isExample: true,
 };
 
-export default (state = inintialState, action) => {
+export default function(state = inintialState, action) {
   switch (action.type) {
     case exampleActions:
       return {
@@ -15,4 +15,4 @@ export default (state = inintialState, action) => {
         ...state,
       };
   }
-};
+}
