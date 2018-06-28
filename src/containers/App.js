@@ -1,62 +1,28 @@
 import React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import {
-  Container,
-  Header,
-  Content,
-  Footer,
-  Button,
-  Left,
-  Icon,
-  Body,
-  Title,
-  Right,
-} from 'native-base';
+import { createStackNavigator } from 'react-navigation';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+import HomeScreen from './HomeScreen';
+import LoginScreen from './LoginScreen';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n Cmd+D or shake for dev mena',
-  android: 'Double tap R on your keyboard to reload, Shake or prs menu button for dev menu',
-});
-function App() {
-  return (
-    <Container>
-      <Header>
-        <Left>
-          <Button transparent>
-            <Icon name="menu" />
-          </Button>
-        </Left>
-        <Body>
-          <Title>Header</Title>
-        </Body>
-        <Right />
-      </Header>
-      <Content>
-        <Button>
-          <Text>click me</Text>
-        </Button>
-      </Content>
-      <Footer />
-    </Container>
-  );
+const RootStack = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen,
+    },
+    Login: {
+      screen: LoginScreen,
+    },
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'Login',
+  }
+);
+
+class App extends React.Component {
+  render() {
+    return <RootStack />;
+  }
 }
+
 export default App;
