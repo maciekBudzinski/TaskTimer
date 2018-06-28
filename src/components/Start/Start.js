@@ -21,13 +21,14 @@ class Start extends React.Component {
   };
 
   render() {
+    const { currentForm, changeForm } = this.props;
     return (
       <Container>
         <Content>
           <Title />
-          {/* <LoginForm login={this.login} /> */}
-          <RegisterForm register={this.register} />
-          <ChangeFormLink />
+          {currentForm === 'login' && <LoginForm login={this.login} />}
+          {currentForm === 'register' && <RegisterForm register={this.register} />}
+          <ChangeFormLink currentForm={currentForm} changeForm={changeForm} />
         </Content>
       </Container>
     );
@@ -38,6 +39,8 @@ Start.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  currentForm: PropTypes.string.isRequired,
+  changeForm: PropTypes.func.isRequired,
 };
 
 export default Start;
