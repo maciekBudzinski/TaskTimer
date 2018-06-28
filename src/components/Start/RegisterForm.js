@@ -1,23 +1,14 @@
 import React from 'react';
-import {
-  Form,
-  Item,
-  Input,
-  Label,
-  Button,
-  Text,
-  CheckBox,
-  Body,
-  ListItem,
-  Container,
-} from 'native-base';
+import { Form, Item, Input, Label, Button, Text } from 'native-base';
 import PropTypes from 'prop-types';
 
 class RegisterForm extends React.Component {
   state = {
-    rememberMe: true,
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
+    repeatPassword: '',
   };
 
   handleCheck = () => {
@@ -30,30 +21,39 @@ class RegisterForm extends React.Component {
 
   render() {
     const { register } = this.props;
-    const { email, password, rememberMe } = this.state;
+    const { firstName, lastName, email, password, repeatPassword } = this.state;
     return (
       <Form>
-        <Item floatingLabel>
+        <Item stackedLabel>
+          <Label>Imię</Label>
+          <Input value={firstName} onChangeText={text => this.setState({ firstName: text })} />
+        </Item>
+        <Item stackedLabel>
+          <Label>Nazwisko</Label>
+          <Input value={lastName} onChangeText={text => this.setState({ lastName: text })} />
+        </Item>
+        <Item stackedLabel>
           <Label>Email</Label>
           <Input value={email} onChangeText={text => this.setState({ email: text })} />
         </Item>
-        <Item floatingLabel>
+        <Item stackedLabel>
           <Label>Hasło</Label>
           <Input value={password} onChangeText={text => this.setState({ password: text })} />
         </Item>
-        <ListItem>
-          <CheckBox checked={rememberMe} onPress={this.handleCheck} />
-          <Body>
-            <Text>Zapamiętaj mnie</Text>
-          </Body>
-        </ListItem>
+        <Item stackedLabel>
+          <Label>Powtórz hasło</Label>
+          <Input
+            value={repeatPassword}
+            onChangeText={text => this.setState({ repeatPassword: text })}
+          />
+        </Item>
         <Button
           style={{ width: `100%`, alignItems: 'center', justifyContent: 'center' }}
           primary
-          disabled={(email && password) === ''}
+          disabled={(firstName && lastName && email && password && repeatPassword) === ''}
           onPress={register}
         >
-          <Text>Zaloguj</Text>
+          <Text>Zarejestruj</Text>
         </Button>
       </Form>
     );
