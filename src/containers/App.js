@@ -1,5 +1,17 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
+import {
+  Container,
+  Header,
+  Content,
+  Footer,
+  Button,
+  Left,
+  Icon,
+  Body,
+  Title,
+  Right,
+} from 'native-base';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,11 +38,25 @@ const instructions = Platform.select({
 });
 function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Welcome 23</Text>
-      <Text style={styles.instructions}>To get started, edit App asddsasd</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
-    </View>
+    <Container>
+      <Header>
+        <Left>
+          <Button transparent>
+            <Icon name="menu" />
+          </Button>
+        </Left>
+        <Body>
+          <Title>Header</Title>
+        </Body>
+        <Right />
+      </Header>
+      <Content>
+        <Button>
+          <Text>click me</Text>
+        </Button>
+      </Content>
+      <Footer />
+    </Container>
   );
 }
 export default App;
