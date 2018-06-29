@@ -23,9 +23,9 @@ class Start extends React.Component {
   render() {
     const { currentForm, changeForm } = this.props;
     return (
-      <Container>
+      <Container style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         <Content>
-          <Title />
+          <Title currentForm={currentForm} />
           {currentForm === 'login' && <LoginForm login={this.login} />}
           {currentForm === 'register' && <RegisterForm register={this.register} />}
           <ChangeFormLink currentForm={currentForm} changeForm={changeForm} />

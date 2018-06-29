@@ -13,7 +13,7 @@ const ChangeFormLink = ({ currentForm, changeForm }) => (
     )}
     {currentForm === 'register' && (
       <Button transparent onPress={() => changeForm('login')}>
-        <Text style={{ alignSelf: 'center', fontWeight: '600' }}>Załóż konto</Text>
+        <Text style={{ alignSelf: 'center', fontWeight: '600' }}>Zaloguj się</Text>
       </Button>
     )}
   </View>
