@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { Container, Header } from 'native-base';
 import configureStore from '../store/configureStore';
-import DrawerNavigator from '../navigation/navigation';
+import RootNavigator from '../navigation/navigation';
 
 const store = configureStore();
 
@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <Container>
-          <DrawerNavigator />
+          <RootNavigator />
         </Container>
       </Provider>
     );

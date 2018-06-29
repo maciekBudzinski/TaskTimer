@@ -16,8 +16,8 @@ class Start extends React.Component {
 
   register = () => {
     // Tutaj akcja z reduxa, if ok to navigate
-    const { navigation } = this.props;
-    navigation.navigate('Home');
+    // const { navigation } = this.props;
+    // navigation.navigate('Home');
   };
 
   render() {
