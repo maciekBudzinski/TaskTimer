@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Content, Text, Button } from 'native-base';
+import { Container, Content } from 'native-base';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Title from './Title';

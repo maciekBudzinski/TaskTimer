@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Card, Text, View, Right, Content, Icon } from 'native-base';
+import { Card, Text, View, Content, Icon } from 'native-base';
 
 const TaskCard = props => (
   <Content style={{ padding: 5 }}>

@@ -1,18 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {
-  Content,
-  Text,
-  Form,
-  Item,
-  Label,
-  Input,
-  ListItem,
-  CheckBox,
-  Body,
-  Button,
-  View,
-} from 'native-base';
+import { Content, Text, Form, Item, Label, Input, Button, View } from 'native-base';
 import { ColorWheel } from 'react-native-color-wheel';
 
 class AddNewCategoryForm extends Component {
