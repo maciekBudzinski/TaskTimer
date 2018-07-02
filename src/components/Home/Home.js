@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Text, Fab, Icon, Button } from 'native-base';
+import { Container, Fab, Icon } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import AppHeader from '../../common/AppHeader';
 import TaskCard from '../../common/TaskCard';

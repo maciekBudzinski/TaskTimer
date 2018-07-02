@@ -2,6 +2,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import reducer from '../reducers';
 
+const DEVELOPMENT = process.env.NODE_ENV === 'development' ? true : undefined;
+
 export default function configureStore(initialState) {
   const store = createStore(
     reducer,
@@ -12,11 +14,10 @@ export default function configureStore(initialState) {
     )
   );
 
-  if (module.hot) {
-    // Enable hot module replacement for reducers
+  if (DEVELOPMENT && module.hot) {
     module.hot.accept(() => {
-      // eslint-disable-next-line
-      const nextRootReducer = require('../reducers/index').default;
+      // eslint-disable=next-line
+      const nextRootReducer = require('../reducers').default;
       store.replaceReducer(nextRootReducer);
     });
   }

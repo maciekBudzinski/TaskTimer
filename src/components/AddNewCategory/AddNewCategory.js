@@ -1,6 +1,15 @@
 import React from 'react';
-import { Text } from 'native-base';
+import { Text, Container, Content } from 'native-base';
+import AppHeader from '../../common/AppHeader';
+import AddNewCategoryForm from './AddNewCategoryForm';
 
-const AddNewCategory = () => <Text>AddNewCategory</Text>;
+function AddNewCategory() {
+  return (
+    <Container>
+      <AppHeader title="Dodaj kategorię" />
+      <AddNewCategoryForm />
+    </Container>
+  );
+}
 
 export default AddNewCategory;
