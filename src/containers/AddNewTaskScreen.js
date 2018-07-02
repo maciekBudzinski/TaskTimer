@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddNewTask from '../components/AddNewTask/AddNewTask';
+import AddNewTask from '../components/addNewTask/AddNewTask';
 
 class AddNewTaskScreen extends Component {
   render() {

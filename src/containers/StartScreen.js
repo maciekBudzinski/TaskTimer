@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Container } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeForm } from '../actions/navigationActions';
+import { changeForm } from '../modules/navigation/actions';
 
-import Start from '../components/Start/Start';
+import Start from '../components/start/Start';
 
 class StartScreen extends Component {
   render() {
@@ -26,5 +26,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(StartScreen);
-
-// export default StartScreen;

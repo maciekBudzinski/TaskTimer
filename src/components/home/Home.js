@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Fab, Icon } from 'native-base';
 import { withNavigation } from 'react-navigation';
-import AppHeader from '../../common/AppHeader';
-import TaskCard from '../../common/TaskCard';
+import AppHeader from '../common/AppHeader';
+import TaskCard from '../common/TaskCard';
 
 const Home = props => (
   <Container>

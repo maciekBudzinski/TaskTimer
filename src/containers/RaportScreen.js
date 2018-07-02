@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Raport from '../components/Raport/Raport';
+import Raport from '../components/raport/Raport';
 
 class RaportScreen extends Component {
   render() {

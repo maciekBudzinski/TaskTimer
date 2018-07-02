@@ -1,12 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import reducer from '../reducers';
+import rootReducer from './rootReducer';
 
-const DEVELOPMENT = process.env.NODE_ENV === 'development' ? true : undefined;
+// const DEVELOPMENT = process.env.NODE_ENV === 'development' ? true : undefined;
 
 export default function configureStore(initialState) {
   const store = createStore(
-    reducer,
+    rootReducer,
     initialState,
     compose(
       applyMiddleware(thunk),
@@ -16,7 +16,8 @@ export default function configureStore(initialState) {
 
   if (module.hot) {
     module.hot.accept(() => {
-      const nextRootReducer = require('../reducers/index').default;
+      // eslint-disable-next-line
+      const nextRootReducer = require('../helpers/rootReducer').default;
       store.replaceReducer(nextRootReducer);
     });
   }

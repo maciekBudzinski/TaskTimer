@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RaportDate from '../components/RaportDate/RaportDate';
+import RaportDate from '../components/raportDate/RaportDate';
 
 class RaportDateScreen extends Component {
   render() {

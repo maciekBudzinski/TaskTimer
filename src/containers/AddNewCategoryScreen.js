@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddNewCategory from '../components/AddNewCategory/AddNewCategory';
+import AddNewCategory from '../components/addNewCategory/AddNewCategory';
 
 class AddNewCategoryScreen extends Component {
   render() {

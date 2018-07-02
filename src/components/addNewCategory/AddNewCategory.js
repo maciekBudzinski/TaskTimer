@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, Container, Content } from 'native-base';
-import AppHeader from '../../common/AppHeader';
+import AppHeader from '../common/AppHeader';
 import AddNewCategoryForm from './AddNewCategoryForm';
 
 function AddNewCategory() {

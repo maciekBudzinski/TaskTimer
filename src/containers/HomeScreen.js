@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Home from '../components/Home/Home';
+import Home from '../components/home/Home';
 
 class HomeScreen extends Component {
   render() {
