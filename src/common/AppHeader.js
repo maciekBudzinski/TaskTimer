@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Header, Left, Button, Icon, Body, Title, Right } from 'native-base';
 import { withNavigation } from 'react-navigation';
 
-const AppHeader = ({ title, ...props }) => {
+const AppHeader = ({ title, navigation }) => {
   const openMenu = () => {
-    props.navigation.openDrawer();
+    navigation.openDrawer();
   };
   return (
     <Header>

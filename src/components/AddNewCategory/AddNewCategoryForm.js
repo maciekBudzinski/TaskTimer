@@ -11,7 +11,9 @@ import {
   CheckBox,
   Body,
   Button,
+  View,
 } from 'native-base';
+import { ColorWheel } from 'react-native-color-wheel';
 
 class AddNewCategoryForm extends Component {
   state = {
@@ -25,24 +27,19 @@ class AddNewCategoryForm extends Component {
       <Content>
         <Form>
           <Item stackedLabel>
-            <Label>Nazwa kategorii</Label>
+            <Label>Nazwa</Label>
             <Input
               value={categoryName}
               onChangeText={text => this.setState({ categoryName: text })}
             />
           </Item>
           <Item stackedLabel>
-            <Label>Kolor kategori dsasdai</Label>
-            <Input
-              value={categoryColor}
-              onChangeText={text => this.setState({ categoryColor: text })}
-            />
+            <Label>Kolor kategorii</Label>
+            <View style={{ alignItems: 'center', height: 250 }}>
+              <ColorWheel initialColor="#00ee00" style={{ height: 200, width: 200 }} />
+            </View>
           </Item>
-          <Button
-            style={{ width: `100%`, alignItems: 'center', justifyContent: 'center' }}
-            primary
-            // disabled={(categoryName && categoryColor) === ''}
-          >
+          <Button style={{ width: `100%`, alignItems: 'center', justifyContent: 'center' }} primary>
             <Text>Dodaj</Text>
           </Button>
         </Form>

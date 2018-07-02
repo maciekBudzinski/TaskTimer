@@ -1756,6 +1756,10 @@ color@~1.0.3:
     color-convert "^1.8.2"
     color-string "^1.4.0"
 
+colorsys@^1.0.17:
+  version "1.0.21"
+  resolved "https://registry.yarnpkg.com/colorsys/-/colorsys-1.0.21.tgz#f35044e182376f6ec4730668ddc0ad3269530523"
+
 combined-stream@1.0.6, combined-stream@~1.0.5:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.6.tgz#723e7df6e801ac5613113a7e445a9b69cb632818"
@@ -4806,6 +4810,12 @@ react-is@^16.3.1:
 react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
+
+react-native-color-wheel@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-color-wheel/-/react-native-color-wheel-0.1.5.tgz#b72be86fe82c0081af9225029c1c408a64c23959"
+  dependencies:
+    colorsys "^1.0.17"
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
