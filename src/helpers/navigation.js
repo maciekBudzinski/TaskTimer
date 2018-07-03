@@ -61,7 +61,7 @@ const drawerNavigator = createDrawerNavigator(
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'RaportDate',
     headerMode: 'none',
   }
 );

@@ -1,6 +1,7 @@
 import { Form, Item, Label, Input, Picker, View, Text, Button, Icon } from 'native-base';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withNavigation } from 'react-navigation';
 
 class AddNewTaskForm extends Component {
   state = {
@@ -15,8 +16,10 @@ class AddNewTaskForm extends Component {
   };
 
   onSubmit = () => {
+    const { navigation } = this.props;
     const { taskName, taskCategory } = this.state;
     console.log(taskName, taskCategory);
+    navigation.navigate('Home');
   };
 
   render() {
@@ -43,6 +46,7 @@ class AddNewTaskForm extends Component {
         <Button
           iconLeft
           success
+          disabled={taskName === ''}
           style={{ width: `100%`, alignItems: 'center', justifyContent: 'center' }}
           onPress={this.onSubmit}
         >
@@ -54,6 +58,10 @@ class AddNewTaskForm extends Component {
   }
 }
 
-AddNewTaskForm.propTypes = {};
+AddNewTaskForm.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
-export default AddNewTaskForm;
+export default withNavigation(AddNewTaskForm);

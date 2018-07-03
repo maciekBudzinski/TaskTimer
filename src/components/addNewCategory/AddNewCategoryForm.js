@@ -34,7 +34,7 @@ class AddNewCategoryForm extends Component {
       <Content>
         <Form>
           <Item stackedLabel>
-            <Label style={{ color: `${categoryColor}` }}>Nazwa</Label>
+            <Label>Nazwa</Label>
             <Input
               value={categoryName}
               onChangeText={text => this.setState({ categoryName: text })}

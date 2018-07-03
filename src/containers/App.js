@@ -4,11 +4,7 @@ import RootNavigator from '../helpers/navigation';
 
 class App extends React.Component {
   render() {
-    return (
-      <Container>
-        <RootNavigator />
-      </Container>
-    );
+    return <RootNavigator />;
   }
 }
 

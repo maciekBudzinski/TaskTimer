@@ -1,14 +1,15 @@
 import React from 'react';
-import { Text, Container, Button } from 'native-base';
-import { withNavigation } from 'react-navigation';
+import { Text, Container, Button, Content } from 'native-base';
+import AppHeader from '../common/AppHeader';
+import RaportDateForm from './RaportDateForm';
 
-const RaportDate = ({ navigation }) => (
+const RaportDate = () => (
   <Container>
-    <Text>RaportDate</Text>
-    <Button onPress={() => navigation.navigate('Raport')}>
-      <Text>Zobacz raport</Text>
-    </Button>
+    <AppHeader title="Raport" />
+    <Content>
+      <RaportDateForm />
+    </Content>
   </Container>
 );
 
-export default withNavigation(RaportDate);
+export default RaportDate;
