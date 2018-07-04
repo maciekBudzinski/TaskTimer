@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Header, Left, Button, Icon, Body, Title, Right } from 'native-base';
 import { withNavigation } from 'react-navigation';
-import FilterButton from './FilterButton';
 
 const AppHeader = ({ title, navigation, withFilter, openFilters, stack }) => {
   const openMenu = () => {

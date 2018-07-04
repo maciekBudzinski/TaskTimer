@@ -12,8 +12,10 @@ const Home = ({ navigation, closeFilters, filtersOpen }) => (
     <Content>
       {filtersOpen && <FilterModal closeFilters={closeFilters} />}
       <TaskCard />
+      <TaskCard />
+      <TaskCard />
     </Content>
-    <Fab onPress={() => navigation.navigate('AddNewTask')}>
+    <Fab style={{ backgroundColor: `#4050B5` }} onPress={() => navigation.navigate('AddNewTask')}>
       <Icon name="add" />
     </Fab>
   </Container>

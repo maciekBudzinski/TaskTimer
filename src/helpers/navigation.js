@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-  createStackNavigator,
-  createDrawerNavigator,
-  createSwitchNavigator,
-} from 'react-navigation';
-import { Header, View, Text, Left, Body, Title, Button, Icon } from 'native-base';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import { Icon } from 'native-base';
 import HomeScreen from '../containers/HomeScreen';
 import StartScreen from '../containers/StartScreen';
 import AddNewCategoryScreen from '../containers/AddNewCategoryScreen';
 import RaportDateScreen from '../containers/RaportDateScreen';
 import RaportScreen from '../containers/RaportScreen';
 import AddNewTaskScreen from '../containers/AddNewTaskScreen';
-import AppHeader from '../components/common/AppHeader';
 
 // const stackNavigator = createStackNavigator(
 //   {
