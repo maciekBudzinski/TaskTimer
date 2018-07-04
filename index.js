@@ -4,7 +4,7 @@ import { AppRegistry } from 'react-native';
 import configureStore from './src/helpers/configureStore';
 import App from './src/containers/App';
 
-console.ignoredYellowBox = ['Remote debugger', 'Warning: isMounted'];
+console.ignoredYellowBox = ['Remote debugger', 'Warning: isMounted', 'Unable to symbolicate'];
 
 const store = configureStore();
 class index extends React.Component {

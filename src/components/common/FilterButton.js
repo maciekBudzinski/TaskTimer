@@ -5,7 +5,7 @@ import { Right, Button, Icon } from 'native-base';
 const FilterButton = ({ openFilters, closeFilters, filtersOpen }) => (
   <Right>
     <Button transparent onPress={filtersOpen ? closeFilters : openFilters}>
-      <Icon name="funnel" />
+      <Icon name={filtersOpen ? 'close' : 'funnel'} />
     </Button>
   </Right>
 );
