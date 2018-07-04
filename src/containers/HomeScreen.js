@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { closeFilters } from '../modules/navigation/actions';
 import Home from '../components/home/Home';
 
 class HomeScreen extends Component {
@@ -7,4 +10,13 @@ class HomeScreen extends Component {
   }
 }
 
-export default HomeScreen;
+const mapDispatchToProps = dispatch => bindActionCreators({ closeFilters }, dispatch);
+
+const mapStateToProps = state => ({
+  filtersOpen: state.navigation.filtersOpen,
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(HomeScreen);

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container } from 'native-base';
-import AppHeader from '../common/AppHeader';
 import AddNewCategoryForm from './AddNewCategoryForm';
+import AppHeaderScreen from '../../containers/AppHeaderScreen';
 
 function AddNewCategory() {
   return (
     <Container>
-      <AppHeader title="Dodaj kategorię" />
+      <AppHeaderScreen title="Dodaj kategorię" />
       <AddNewCategoryForm />
     </Container>
   );

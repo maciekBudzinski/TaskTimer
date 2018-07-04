@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Text, Container, Content } from 'native-base';
+import { Container, Content } from 'native-base';
 import AddNewTaskForm from './AddNewTaskForm';
-import AppHeader from '../common/AppHeader';
+import AppHeaderScreen from '../../containers/AppHeaderScreen';
 
 const AddNewTask = () => (
   <Container>
-    <AppHeader title="Dodaj zadanie" />
+    <AppHeaderScreen title="Dodaj zadanie" />
     <Content>
       <AddNewTaskForm />
     </Content>

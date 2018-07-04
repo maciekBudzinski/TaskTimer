@@ -1,11 +1,11 @@
 import React from 'react';
-import { Text, Container, Button, Content } from 'native-base';
-import AppHeader from '../common/AppHeader';
+import { Container, Content } from 'native-base';
 import RaportDateForm from './RaportDateForm';
+import AppHeaderScreen from '../../containers/AppHeaderScreen';
 
 const RaportDate = () => (
   <Container>
-    <AppHeader title="Raport" />
+    <AppHeaderScreen title="Raport" />
     <Content>
       <RaportDateForm />
     </Content>

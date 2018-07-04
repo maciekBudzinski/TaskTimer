@@ -3,12 +3,13 @@ import { Text } from 'react-native';
 
 import { Content, Container } from 'native-base';
 import AppHeader from './AppHeader';
+import AppHeaderScreen from '../../containers/AppHeaderScreen';
 
 export default class Sidebar extends Component {
   render() {
     return (
       <Container>
-        <AppHeader />
+        <AppHeaderScreen />
         <Content style={{ backgroundColor: '#FFFFFF' }}>
           <Text>Drawer</Text>
         </Content>
