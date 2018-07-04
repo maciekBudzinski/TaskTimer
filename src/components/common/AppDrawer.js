@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-
 import { Content, Container } from 'native-base';
-import AppHeader from './AppHeader';
 import AppHeaderScreen from '../../containers/AppHeaderScreen';
 
 export default class Sidebar extends Component {

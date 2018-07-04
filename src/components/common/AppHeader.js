@@ -4,45 +4,48 @@ import { Header, Left, Button, Icon, Body, Title, Right } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import FilterButton from './FilterButton';
 
-const AppHeader = ({ title, navigation, withFilter, openFilters, closeFilters, filtersOpen }) => {
+const AppHeader = ({ title, navigation, withFilter, openFilters, stack }) => {
   const openMenu = () => {
     navigation.openDrawer();
+  };
+
+  const goBack = () => {
+    navigation.goBack();
   };
   return (
     <Header>
       <Left>
-        <Button onPress={openMenu} transparent>
-          <Icon name="menu" />
+        <Button onPress={stack ? goBack : openMenu} transparent>
+          <Icon name={stack ? 'arrow-back' : 'menu'} />
         </Button>
       </Left>
       <Body>
         <Title>{title}</Title>
       </Body>
-      {withFilter ? (
-        <FilterButton
-          openFilters={openFilters}
-          closeFilters={closeFilters}
-          filtersOpen={filtersOpen}
-        />
-      ) : (
-        <Right />
-      )}
+      <Right>
+        {withFilter && (
+          <Button transparent onPress={openFilters}>
+            <Icon name="funnel" />
+          </Button>
+        )}
+      </Right>
     </Header>
   );
 };
 AppHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  filtersOpen: PropTypes.bool.isRequired,
+  stack: PropTypes.bool,
   openFilters: PropTypes.func.isRequired,
-  closeFilters: PropTypes.func.isRequired,
   withFilter: PropTypes.bool,
   navigation: PropTypes.shape({
-    openDrawer: PropTypes.func.isRequired,
+    openDrawer: PropTypes.func,
+    goBack: PropTypes.func,
   }).isRequired,
 };
 
 AppHeader.defaultProps = {
   withFilter: false,
+  stack: false,
 };
 
 export default withNavigation(AppHeader);

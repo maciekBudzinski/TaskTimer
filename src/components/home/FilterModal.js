@@ -11,8 +11,13 @@ import {
   Label,
   Button,
   View,
+  Header,
+  Left,
+  Icon,
+  Body,
+  Title,
+  Right,
 } from 'native-base';
-import AppHeaderScreen from '../../containers/AppHeaderScreen';
 
 class FilterModal extends React.Component {
   state = {
@@ -54,7 +59,21 @@ class FilterModal extends React.Component {
     return (
       <Modal onRequestClose={closeFilters}>
         <Container>
-          <AppHeaderScreen withFilter title="Wybierz filtry" />
+          <Header>
+            <Left>
+              <Button transparent onPress={closeFilters}>
+                <Icon name="arrow-back" />
+              </Button>
+            </Left>
+            <Body>
+              <Title>Wybierz filtry</Title>
+            </Body>
+            <Right>
+              <Button transparent onPress={this.onSubmit}>
+                <Icon name="checkmark" />
+              </Button>
+            </Right>
+          </Header>
           <Content style={{ margin: 20 }}>
             <Form style={{ flex: 3 }}>
               <Label>Kategoria</Label>
@@ -87,14 +106,6 @@ class FilterModal extends React.Component {
               />
             </Form>
           </Content>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 25 }}>
-            <Button primary>
-              <Text>Wyzeruj</Text>
-            </Button>
-            <Button success onPress={this.onSubmit}>
-              <Text>Zastosuj</Text>
-            </Button>
-          </View>
         </Container>
       </Modal>
     );

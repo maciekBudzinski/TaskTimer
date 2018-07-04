@@ -93,6 +93,9 @@ const AppStack = createStackNavigator(
     Drawer: {
       screen: Drawer,
     },
+    AddNewTask: {
+      screen: AddNewTaskScreen,
+    },
   },
   {
     initialRouteName: 'Drawer',
