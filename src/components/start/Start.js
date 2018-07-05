@@ -9,7 +9,7 @@ import ChangeFormLink from './ChangeFormLink';
 const Start = ({ navigation, currentForm, changeForm }) => {
   const login = () => {
     // Tutaj akcja z reduxa, if ok to navigate
-    navigation.navigate('App');
+    navigation.navigate('AppStack');
   };
 
   const register = () => {

@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 import { Text, View, Icon, SwipeRow, Button } from 'native-base';
 import styles from '../../helpers/styles';
 
+const stopTask = () => {
+  alert('Zatrzymano zadanie');
+};
+
+const deleteTask = () => {
+  alert('Usunięto zadanie');
+};
+
 const TaskCard = ({ taskActive }) => (
   <View style={{ paddingVertical: 2 }}>
     <SwipeRow
@@ -18,13 +26,13 @@ const TaskCard = ({ taskActive }) => (
 );
 
 const DeleteButton = () => (
-  <Button danger>
+  <Button danger onPress={deleteTask}>
     <Icon active name="trash" />
   </Button>
 );
 
 const StopButton = () => (
-  <Button primary>
+  <Button primary onPress={stopTask}>
     <Icon active name="square" />
   </Button>
 );

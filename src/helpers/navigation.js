@@ -1,5 +1,9 @@
 import React from 'react';
-import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
+import {
+  createStackNavigator,
+  createDrawerNavigator,
+  createSwitchNavigator,
+} from 'react-navigation';
 import { Icon } from 'native-base';
 import HomeScreen from '../containers/HomeScreen';
 import StartScreen from '../containers/StartScreen';
@@ -71,17 +75,19 @@ const Drawer = createDrawerNavigator(
         drawerIcon: <Icon name="md-paper" />,
       },
     },
+    Logout: {
+      screen: StartScreen,
+      navigationOptions: {
+        title: 'Wyloguj',
+        drawerIcon: <Icon name="log-out" />,
+        drawerLockMode: 'locked-closed',
+      },
+    },
   },
   {
     headerMode: 'none',
   }
 );
-
-const AuthStack = createStackNavigator({
-  Start: {
-    screen: StartScreen,
-  },
-});
 
 const AppStack = createStackNavigator(
   {
@@ -97,6 +103,18 @@ const AppStack = createStackNavigator(
     headerMode: 'none',
   }
 );
+
+const AuthStack = createSwitchNavigator({
+  Start: {
+    screen: StartScreen,
+  },
+  AppStack: {
+    screen: AppStack,
+    navigationOptions: {
+      headerMode: 'none',
+    },
+  },
+});
 
 const RootNavigator = createStackNavigator(
   {
