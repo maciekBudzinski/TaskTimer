@@ -13,4 +13,16 @@ export default StyleSheet.create({
     marginLeft: 0,
     marginRight: 0,
   },
+
+  listSeparator: {
+    paddingLeft: 10,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+  },
+
+  listSeparatorText: {
+    fontSize: 20,
+    color: 'black',
+  },
 });

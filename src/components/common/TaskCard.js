@@ -1,16 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import { Text, View, Icon, SwipeRow, Button } from 'native-base';
 import styles from '../../helpers/styles';
 
-const TaskCard = props => (
+const TaskCard = ({ taskActive }) => (
   <View style={{ paddingVertical: 2 }}>
     <SwipeRow
       leftOpenValue={75}
       rightOpenValue={-75}
       style={[styles.zeroPadding, { marginHorizontal: 1 }]}
-      left={<DeleteButton />}
+      left={taskActive ? <StopButton /> : <DeleteButton />}
       body={<CardBody />}
-      right={<DeleteButton />}
+      right={taskActive ? <StopButton /> : <DeleteButton />}
     />
   </View>
 );
@@ -18,6 +20,12 @@ const TaskCard = props => (
 const DeleteButton = () => (
   <Button danger>
     <Icon active name="trash" />
+  </Button>
+);
+
+const StopButton = () => (
+  <Button primary>
+    <Icon active name="square" />
   </Button>
 );
 
@@ -37,6 +45,12 @@ const CardBody = () => (
   </View>
 );
 
-TaskCard.propTypes = {};
+TaskCard.propTypes = {
+  taskActive: PropTypes.bool,
+};
+
+TaskCard.defaultProps = {
+  taskActive: false,
+};
 
 export default TaskCard;

@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import { Modal } from 'react-native';
 import {
   Container,
-  Text,
   Content,
   Form,
   Picker,
   DatePicker,
   Label,
   Button,
-  View,
   Header,
   Left,
   Icon,
