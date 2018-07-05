@@ -1,12 +1,24 @@
 import React from 'react';
 import { Form, Item, Input, Label, Button, Text, CheckBox, Body, ListItem } from 'native-base';
+import { AsyncStorage } from 'react-native';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 class LoginForm extends React.Component {
   state = {
     rememberMe: true,
-    email: '',
-    password: '',
+    email: 'user@user.pl',
+    password: '1qaz!QAZ',
+  };
+
+  handleLoginSuccess = token => {
+    const { navigation } = this.props;
+    _storeData = async () => {
+      await AsyncStorage.setItem('jwt', token);
+    };
+    axios.defaults.headers.common.Authorization = `${'Bearer' + ' '}${token}`;
+    console.log('1');
+    navigation.navigate('AppStack');
   };
 
   handleCheck = () => {
@@ -17,8 +29,15 @@ class LoginForm extends React.Component {
     });
   };
 
+  login = (email, password) => {
+    const { customerLogin } = this.props;
+    customerLogin(email, password).then(res => {
+      this.props.isAuthenticated ? this.handleLoginSuccess(res.payload.data.token) : alert('błąd');
+    });
+    // Tutaj akcja z reduxa, if ok to navigate
+  };
+
   render() {
-    const { login } = this.props;
     const { email, password, rememberMe } = this.state;
     return (
       <Form>
@@ -40,7 +59,7 @@ class LoginForm extends React.Component {
           style={{ width: `100%`, alignItems: 'center', justifyContent: 'center' }}
           primary
           disabled={(email && password) === ''}
-          onPress={login}
+          onPress={() => this.login(email, password)}
         >
           <Text>Zaloguj</Text>
         </Button>
@@ -50,6 +69,7 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-  login: PropTypes.func.isRequired,
+  customerLogin: PropTypes.func.isRequired,
+  navigation: PropTypes.func.isRequired,
 };
 export default LoginForm;
