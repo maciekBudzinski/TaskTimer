@@ -3,11 +3,11 @@ import { Container, Content } from 'native-base';
 import AddNewTaskForm from './AddNewTaskForm';
 import AppHeaderScreen from '../../containers/AppHeaderScreen';
 
-const AddNewTask = () => (
+const AddNewTask = props => (
   <Container>
     <AppHeaderScreen title="Dodaj zadanie" stack />
     <Content>
-      <AddNewTaskForm />
+      <AddNewTaskForm {...props} />
     </Content>
   </Container>
 );

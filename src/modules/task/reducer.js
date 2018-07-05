@@ -2,48 +2,49 @@ import * as actionTypes from './actionTypes';
 
 const initialState = {
   isLoading: false,
-  isSuccess: false,
-  categories: [],
+  taskAdded: false,
+  tasks: [],
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case actionTypes.ADD_CATEGORY:
-      return {
-        ...state,
-        isSuccess: false,
-        isLoading: true,
-      };
-
-    case actionTypes.ADD_CATEGORY_SUCCESS:
-      return {
-        ...state,
-        isSuccess: true,
-        isLoading: false,
-      };
-
-    case actionTypes.ADD_CATEGORY_FAIL:
-      return {
-        ...state,
-        isLoading: false,
-      };
-
-    case actionTypes.GET_CATEGORIES:
+    case actionTypes.ADD_TASK:
       return {
         ...state,
         isLoading: true,
+        taskAdded: false,
       };
-    case actionTypes.GET_CATEGORIES_SUCCESS:
+
+    case actionTypes.ADD_TASK_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        categories: action.payload.data,
+        taskAdded: true,
       };
-    case actionTypes.GET_CATEGORIES_FAIL:
+
+    case actionTypes.ADD_TASK_FAIL:
       return {
         ...state,
         isLoading: false,
       };
+
+    case actionTypes.GET_TASKS:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case actionTypes.GET_TASKS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        tasks: action.payload.data,
+      };
+    case actionTypes.GET_TASKS_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+      };
+
     default:
       return {
         ...state,

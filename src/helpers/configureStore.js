@@ -15,10 +15,12 @@ export default function configureStore(initialState) {
   //     window.devToolsExtension ? window.devToolsExtension() : f => f
   //   )
   // );
+  axios.defaults.headers.common.Authorization =
+    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJAdXNlci5wbCIsImVtYWlsIjoidXNlckB1c2VyLnBsIiwidXNlcl9pZCI6MSwiZXhwIjoxNTMwODIxODYyfQ.yJ97n7bdjTmrVtYbKqCPKV8dBeq1FX6Qc1AqEYTDKC8';
 
   const client = axios.create({
     baseURL: 'http://trynich.nazwa.pl:8000/',
-    responseType: 'json',
+    // responseType: 'json',
   });
 
   const store = createStore(

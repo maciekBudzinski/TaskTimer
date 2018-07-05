@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Content, Text, Form, Item, Label, Input, Button, View } from 'native-base';
 import { ColorWheel } from 'react-native-color-wheel';
+import PropTypes from 'prop-types';
 
 const rgb = require('hsv-rgb');
 
@@ -25,16 +26,16 @@ class AddNewCategoryForm extends Component {
 
   onSubmit = () => {
     const { categoryName, categoryColor } = this.state;
-    const { addCategory, isSuccess, navigation } = this.props;
-    console.log(categoryName, categoryColor);
-    addCategory().then(() => {
+    const { addCategory, navigation } = this.props;
+    addCategory(categoryName, categoryColor).then(() => {
+      const { isSuccess } = this.props;
       // eslint-disable-next-line
       isSuccess ? navigation.navigate('Home') : alert('Nie można dodać kategorii');
     });
   };
 
   render() {
-    const { categoryName, categoryColor } = this.state;
+    const { categoryName } = this.state;
     return (
       <Content>
         <Form>
@@ -68,6 +69,12 @@ class AddNewCategoryForm extends Component {
   }
 }
 
-AddNewCategoryForm.propTypes = {};
+AddNewCategoryForm.propTypes = {
+  addCategory: PropTypes.func.isRequired,
+  isSuccess: PropTypes.bool.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default AddNewCategoryForm;

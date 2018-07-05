@@ -14,6 +14,7 @@ import RaportDateScreen from '../containers/RaportDateScreen';
 import RaportScreen from '../containers/RaportScreen';
 import AddNewTaskScreen from '../containers/AddNewTaskScreen';
 import styles from './styles';
+import LogoutButton from '../components/common/LogoutButton';
 
 // const stackNavigator = createStackNavigator(
 //   {
@@ -78,14 +79,14 @@ const Drawer = createDrawerNavigator(
         drawerIcon: <Icon name="md-paper" />,
       },
     },
-    Logout: {
-      screen: StartScreen,
-      navigationOptions: {
-        title: 'Wyloguj',
-        drawerIcon: <Icon name="log-out" />,
-        drawerLockMode: 'locked-closed',
-      },
-    },
+    // Logout: {
+    //   screen: StartScreen,
+    //   navigationOptions: {
+    //     title: 'Wyloguj',
+    //     drawerIcon: <Icon name="log-out" />,
+    //     drawerLockMode: 'locked-closed',
+    //   },
+    // },
   },
   {
     headerMode: 'none',
@@ -95,6 +96,7 @@ const Drawer = createDrawerNavigator(
         {/* eslint-disable-next-line */}
         <Image style={styles.drawerImage} source={require('../../img/stopwatch.jpg')} />
         <DrawerItems {...props} />
+        <LogoutButton />
       </View>
     ),
   }

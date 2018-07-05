@@ -2,6 +2,8 @@ import { Form, Item, Label, Input, Picker, View, Text, Button, Icon } from 'nati
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNavigation } from 'react-navigation';
+import moment from 'moment';
+import TaskCard from '../common/TaskCard';
 
 class AddNewTaskForm extends Component {
   state = {
@@ -16,13 +18,15 @@ class AddNewTaskForm extends Component {
   };
 
   onSubmit = () => {
-    const { navigation } = this.props;
+    const { navigation, addTask } = this.props;
     const { taskName, taskCategory } = this.state;
     console.log(taskName, taskCategory);
-    navigation.navigate('Home');
+    addTask(moment(), taskName, taskCategory);
+    // navigation.navigate('Home');
   };
 
   render() {
+    const { categories } = this.props;
     const { taskName, taskCategory } = this.state;
     return (
       <Form>
@@ -37,11 +41,8 @@ class AddNewTaskForm extends Component {
           style={{ marginLeft: 10 }}
           onValueChange={this.onPickerChange}
         >
-          <Picker.Item label="1" value="1" />
-          <Picker.Item label="2" value="6" />
-          <Picker.Item label="Wallet" value="2" />
-          <Picker.Item label="Wallet" value="3" />
-          <Picker.Item label="Wallet" value="4" />
+          {categories &&
+            categories.map(c => <Picker.Item key={c.pk} label={c.CategoryName} value={c.pk} />)}
         </Picker>
         <Button
           iconLeft
@@ -62,6 +63,12 @@ AddNewTaskForm.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  categories: PropTypes.array,
+  addTask: PropTypes.func.isRequired,
+};
+
+AddNewTaskForm.defaultProps = {
+  categories: [],
 };
 
 export default withNavigation(AddNewTaskForm);
