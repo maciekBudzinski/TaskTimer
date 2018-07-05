@@ -1,19 +1,12 @@
-import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { Content, Container } from 'native-base';
-import AppHeaderScreen from '../../containers/AppHeaderScreen';
+import React from 'react';
+import { View, Text } from 'native-base';
+import { DrawerItems } from 'react-navigation';
 
-export default class Sidebar extends Component {
-  render() {
-    return (
-      <Container>
-        <AppHeaderScreen />
-        <Content style={{ backgroundColor: '#FFFFFF' }}>
-          <Text>Drawer</Text>
-        </Content>
-      </Container>
-    );
-  }
-}
+const AppDrawer = props => (
+  <View>
+    <DrawerItems {...props} />
+    <Text>Nowy tekst</Text>
+  </View>
+);
 
-module.exports = Sidebar;
+export default AppDrawer;

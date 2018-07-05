@@ -25,7 +25,12 @@ class AddNewCategoryForm extends Component {
 
   onSubmit = () => {
     const { categoryName, categoryColor } = this.state;
+    const { addCategory, isSuccess, navigation } = this.props;
     console.log(categoryName, categoryColor);
+    addCategory().then(() => {
+      // eslint-disable-next-line
+      isSuccess ? navigation.navigate('Home') : alert('Nie można dodać kategorii');
+    });
   };
 
   render() {

@@ -1,16 +1,19 @@
 import React from 'react';
+import { Image } from 'react-native';
 import {
   createStackNavigator,
   createDrawerNavigator,
   createSwitchNavigator,
+  DrawerItems,
 } from 'react-navigation';
-import { Icon } from 'native-base';
+import { Icon, View, Text, Footer } from 'native-base';
 import HomeScreen from '../containers/HomeScreen';
 import StartScreen from '../containers/StartScreen';
 import AddNewCategoryScreen from '../containers/AddNewCategoryScreen';
 import RaportDateScreen from '../containers/RaportDateScreen';
 import RaportScreen from '../containers/RaportScreen';
 import AddNewTaskScreen from '../containers/AddNewTaskScreen';
+import styles from './styles';
 
 // const stackNavigator = createStackNavigator(
 //   {
@@ -86,6 +89,14 @@ const Drawer = createDrawerNavigator(
   },
   {
     headerMode: 'none',
+    // eslint-disable-next-line
+    contentComponent: props => (
+      <View>
+        {/* eslint-disable-next-line */}
+        <Image style={styles.drawerImage} source={require('../../img/stopwatch.jpg')} />
+        <DrawerItems {...props} />
+      </View>
+    ),
   }
 );
 

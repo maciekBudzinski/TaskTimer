@@ -25,4 +25,8 @@ export default StyleSheet.create({
     fontSize: 20,
     color: 'black',
   },
+  drawerImage: {
+    maxHeight: `20%`,
+    maxWidth: `100%`,
+  },
 });

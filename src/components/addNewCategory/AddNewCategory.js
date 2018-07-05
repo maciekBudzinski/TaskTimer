@@ -3,10 +3,10 @@ import { Container } from 'native-base';
 import AddNewCategoryForm from './AddNewCategoryForm';
 import AppHeaderScreen from '../../containers/AppHeaderScreen';
 
-const AddNewCategory = () => (
+const AddNewCategory = props => (
   <Container>
     <AppHeaderScreen title="Dodaj kategorię" />
-    <AddNewCategoryForm />
+    <AddNewCategoryForm {...props} />
   </Container>
 );
 

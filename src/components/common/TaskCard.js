@@ -42,7 +42,7 @@ const CardBody = () => (
     <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
       <Text>Data</Text>
       <View style={{ flexDirection: 'row' }}>
-        <Icon name="square" style={{ fontSize: 20, color: 'red', paddingRight: 5 }} />
+        <Icon name="bookmark" style={{ fontSize: 25, color: 'red', paddingRight: 5 }} />
         <Text>Kategoria</Text>
       </View>
     </View>
