@@ -6,12 +6,7 @@ import RegisterForm from './RegisterForm';
 import Title from './Title';
 import ChangeFormLink from './ChangeFormLink';
 
-const Start = ({ navigation, currentForm, changeForm }) => {
-  const login = () => {
-    // Tutaj akcja z reduxa, if ok to navigate
-    navigation.navigate('AppStack');
-  };
-
+const Start = ({ navigation, currentForm, changeForm, customerLogin, isAuthenticated }) => {
   const register = () => {
     // Tutaj akcja z reduxa, if ok to navigate
     // const { navigation } = this.props;
@@ -22,7 +17,13 @@ const Start = ({ navigation, currentForm, changeForm }) => {
     <Container style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
       <Content>
         <Title currentForm={currentForm} />
-        {currentForm === 'login' && <LoginForm login={login} />}
+        {currentForm === 'login' && (
+          <LoginForm
+            customerLogin={customerLogin}
+            isAuthenticated={isAuthenticated}
+            navigation={navigation}
+          />
+        )}
         {currentForm === 'register' && <RegisterForm register={register} />}
         <ChangeFormLink currentForm={currentForm} changeForm={changeForm} />
       </Content>
@@ -64,6 +65,7 @@ Start.propTypes = {
   }).isRequired,
   currentForm: PropTypes.string.isRequired,
   changeForm: PropTypes.func.isRequired,
+  customerLogin: PropTypes.func.isRequired,
 };
 
 export default Start;

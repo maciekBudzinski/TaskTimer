@@ -6,7 +6,7 @@ import {
   createSwitchNavigator,
   DrawerItems,
 } from 'react-navigation';
-import { Icon, View, Text, Footer } from 'native-base';
+import { Icon, View, Text, Footer, label } from 'native-base';
 import HomeScreen from '../containers/HomeScreen';
 import StartScreen from '../containers/StartScreen';
 import AddNewCategoryScreen from '../containers/AddNewCategoryScreen';
@@ -82,7 +82,12 @@ const Drawer = createDrawerNavigator(
       screen: StartScreen,
       navigationOptions: {
         title: 'Wyloguj',
-        drawerIcon: <Icon name="log-out" />,
+        drawerIcon: (
+          <label>
+            <Icon name="log-out" />
+            <Text>Wyloguj</Text>
+          </label>
+        ),
         drawerLockMode: 'locked-closed',
       },
     },
@@ -134,7 +139,7 @@ const RootNavigator = createStackNavigator(
   },
   {
     headerMode: 'none',
-    initialRouteName: 'App',
+    initialRouteName: 'Auth',
   }
 );
 
