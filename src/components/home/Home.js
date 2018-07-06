@@ -7,12 +7,25 @@ import FilterModal from './FilterModal';
 import AppHeaderScreen from '../../containers/AppHeaderScreen';
 import TaskList from './TaskList';
 
-const Home = ({ navigation, closeFilters, filtersOpen, tasks, currentTask, currentTaskTime }) => (
+const Home = ({
+  navigation,
+  closeFilters,
+  filtersOpen,
+  tasks,
+  currentTask,
+  currentTaskTime,
+  deleteTask,
+}) => (
   <Container>
     <AppHeaderScreen title="Twoje zadania" withFilter />
     <Content>
       {filtersOpen && <FilterModal closeFilters={closeFilters} />}
-      <TaskList tasks={tasks} currentTaskTime={currentTaskTime} currentTask={currentTask} />
+      <TaskList
+        tasks={tasks}
+        currentTaskTime={currentTaskTime}
+        currentTask={currentTask}
+        deleteTask={deleteTask}
+      />
     </Content>
     <Fab style={{ backgroundColor: `#4050B5` }} onPress={() => navigation.navigate('AddNewTask')}>
       <Icon name="add" />
@@ -29,6 +42,7 @@ Home.propTypes = {
   tasks: PropTypes.array.isRequired,
   currentTask: PropTypes.object,
   currentTaskTime: PropTypes.instanceOf(Date),
+  deleteTask: PropTypes.func.isRequired,
 };
 
 Home.defaultProps = {

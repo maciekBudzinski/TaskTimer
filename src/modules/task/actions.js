@@ -54,3 +54,30 @@ export function iterateCurrentTaskTime(iteratedTime) {
     payload: { iteratedTime },
   };
 }
+
+export function deleteTask(pk) {
+  return {
+    type: actionTypes.DELETE_TASK,
+    payload: {
+      request: {
+        method: 'get',
+        url: `/activity/delete?id=${pk}`,
+      },
+      pk,
+    },
+  };
+}
+
+export function stopTask(activityId, stopDate) {
+  return {
+    type: actionTypes.STOP_TASK,
+    payload: {
+      method: 'post',
+      url: '/activity/stop/',
+      data: {
+        activityId,
+        stopDate,
+      },
+    },
+  };
+}

@@ -8,25 +8,26 @@ const stopTask = () => {
   alert('Zatrzymano zadanie');
 };
 
-const deleteTask = () => {
+const deleteTask = (pk, deleteTask) => {
+  this.props.deleteTask(pk);
   alert('Usunięto zadanie');
 };
 
-const TaskCard = ({ taskActive, ...props }) => (
+const TaskCard = ({ taskActive, deleteTask, pk, ...props }) => (
   <View style={{ paddingVertical: 2 }}>
     <SwipeRow
       leftOpenValue={75}
       rightOpenValue={-75}
       style={[styles.zeroPadding, { marginHorizontal: 1 }]}
-      left={taskActive ? <StopButton /> : <DeleteButton />}
+      left={taskActive ? <StopButton /> : <DeleteButton pk={pk} deleteTask={deleteTask} />}
       body={<CardBody taskActive={taskActive} {...props} />}
-      right={taskActive ? <StopButton /> : <DeleteButton />}
+      right={taskActive ? <StopButton /> : <DeleteButton pk={pk} deleteTask={deleteTask} />}
     />
   </View>
 );
 
-const DeleteButton = () => (
-  <Button danger onPress={deleteTask}>
+const DeleteButton = ({ deleteTask, pk }) => (
+  <Button danger onPress={() => deleteTask(pk)}>
     <Icon active name="trash" />
   </Button>
 );
@@ -74,12 +75,34 @@ const CardBody = ({
   );
 };
 
+CardBody.propTypes = {
+  ActivityName: PropTypes.string,
+  Category: PropTypes.number,
+  StartTime: PropTypes.string,
+  taskActive: PropTypes.bool,
+  StopTime: PropTypes.string,
+  pk: PropTypes.number,
+  // currentTaskTime: PropTypes.instanceOf(Moment),
+};
+
+CardBody.defaultProps = {
+  taskActive: false,
+  ActivityName: '',
+  StopTime: null,
+  currentTaskTime: null,
+  Category: null,
+  StartTime: null,
+  pk: null,
+};
+
 TaskCard.propTypes = {
   taskActive: PropTypes.bool,
+  pk: PropTypes.number,
 };
 
 TaskCard.defaultProps = {
   taskActive: false,
+  pk: null,
 };
 
 export default TaskCard;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container, Content } from 'native-base';
 import AddNewTaskForm from './AddNewTaskForm';
 import AppHeaderScreen from '../../containers/AppHeaderScreen';

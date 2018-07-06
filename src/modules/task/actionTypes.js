@@ -14,3 +14,11 @@ export const GET_CURRENT_TASK_FAIL = `${rootElement}/GET_CURRENT_TASK_FAIL`;
 
 export const SET_CURRENT_TASK_TIME = `${rootElement}/SET_CURRENT_TASK_TIME`;
 export const ITERATE_CURRENT_TASK_TIME = `${rootElement}/ITERATE_CURRENT_TASK_TIME`;
+
+export const DELETE_TASK = `${rootElement}/DELETE_TASK`;
+export const DELETE_TASK_SUCCESS = `${rootElement}/DELETE_TASK_SUCCESS`;
+export const DELETE_TASK_FAIL = `${rootElement}/DELETE_TASK_FAIL`;
+
+export const STOP_TASK = `${rootElement}/STOP_TASK`;
+export const STOP_TASK_SUCCESS = `${rootElement}/STOP_TASK_SUCCESS`;
+export const STOP_TASK_FAIL = `${rootElement}/STOP_TASK_FAIL`;

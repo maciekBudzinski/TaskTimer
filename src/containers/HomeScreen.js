@@ -10,6 +10,7 @@ import {
   getCurrentTask,
   setCurrentTaskTime,
   iterateCurrentTaskTime,
+  deleteTask,
 } from '../modules/task/actions';
 import Home from '../components/home/Home';
 
@@ -18,8 +19,8 @@ class HomeScreen extends Component {
     const { getCategories, getTasks } = this.props;
     getCategories();
     getTasks();
-    this.props
-      .getCurrentTask()
+    // eslint-disable-next-line
+    this.props.getCurrentTask()
       .then(() => {
         const { currentTask, setCurrentTaskTime } = this.props;
         const currentTimeDiff = moment(
@@ -44,7 +45,8 @@ HomeScreen.propTypes = {
   getCategories: PropTypes.func.isRequired,
   getTasks: PropTypes.func.isRequired,
   getCurrentTask: PropTypes.func.isRequired,
-  iterateCurrentTaskTime: PropTypes.func.isRequired,
+  setCurrentTaskTime: PropTypes.func,
+  iterateCurrentTaskTime: PropTypes.func,
   currentTask: PropTypes.object,
   currentTaskTime: PropTypes.instanceOf(Date),
 };
@@ -52,6 +54,8 @@ HomeScreen.propTypes = {
 HomeScreen.defaultProps = {
   currentTask: null,
   currentTaskTime: null,
+  setCurrentTaskTime: () => {},
+  iterateCurrentTaskTime: () => {},
 };
 
 const mapDispatchToProps = dispatch =>
@@ -63,6 +67,7 @@ const mapDispatchToProps = dispatch =>
       getCurrentTask,
       setCurrentTaskTime,
       iterateCurrentTaskTime,
+      deleteTask,
     },
     dispatch
   );

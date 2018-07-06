@@ -4,7 +4,7 @@ import { List, ListItem, Content, Separator, Text, Icon } from 'native-base';
 import TaskCard from '../common/TaskCard';
 import styles from '../../helpers/styles';
 
-const TaskList = ({ tasks, currentTask, currentTaskTime }) => {
+const TaskList = ({ tasks, currentTask, currentTaskTime, deleteTask }) => {
   tasks.sort((a, b) => +new Date(b.StartTime) - +new Date(a.StartTime));
 
   return (
@@ -14,7 +14,7 @@ const TaskList = ({ tasks, currentTask, currentTaskTime }) => {
         <Icon name="time" />
         <Text style={[styles.listSeparatorText, { paddingLeft: 5 }]}>Poprzednie zadania</Text>
       </Separator>
-      {tasks && tasks.map(t => <TaskCard key={t.pk} {...t} />)}
+      {tasks && tasks.map(t => <TaskCard key={t.pk} {...t} deleteTask={deleteTask} />)}
     </List>
   );
 };
@@ -23,6 +23,7 @@ TaskList.propTypes = {
   tasks: PropTypes.array,
   currentTask: PropTypes.object,
   currentTaskTime: PropTypes.instanceOf(Date),
+  deleteTask: PropTypes.func.isRequired,
 };
 
 TaskList.defaultProps = {

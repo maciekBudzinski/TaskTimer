@@ -15,8 +15,6 @@ export default function configureStore(initialState) {
   //     window.devToolsExtension ? window.devToolsExtension() : f => f
   //   )
   // );
-  axios.defaults.headers.common.Authorization =
-    'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InVzZXJAdXNlci5wbCIsImV4cCI6MTUzMDg5MTQ4MywidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJ1c2VyQHVzZXIucGwifQ.awfEBEf3nKx291MUz2NggVDWLo127C2QfJv4oqP8oIk';
 
   const client = axios.create({
     baseURL: 'http://trynich.nazwa.pl:8000/',
