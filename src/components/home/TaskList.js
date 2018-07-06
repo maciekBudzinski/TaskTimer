@@ -5,9 +5,8 @@ import TaskCard from '../common/TaskCard';
 import styles from '../../helpers/styles';
 
 const TaskList = ({ tasks, currentTask, currentTaskTime }) => {
-  console.log(tasks);
   tasks.sort((a, b) => +new Date(b.StartTime) - +new Date(a.StartTime));
-  console.log(tasks);
+
   return (
     <List>
       <TaskCard {...currentTask} currentTaskTime={currentTaskTime} taskActive />
@@ -15,7 +14,7 @@ const TaskList = ({ tasks, currentTask, currentTaskTime }) => {
         <Icon name="time" />
         <Text style={[styles.listSeparatorText, { paddingLeft: 5 }]}>Poprzednie zadania</Text>
       </Separator>
-      {/* {tasks && tasks.map(t => <TaskCard key={t.pk} {...t} />)} */}
+      {tasks && tasks.map(t => <TaskCard key={t.pk} {...t} />)}
     </List>
   );
 };

@@ -1,7 +1,6 @@
 import * as actionTypes from './actionTypes';
 
 export function addTask(activityName, category, startDate) {
-  console.log(activityName, category, startDate);
   return {
     type: actionTypes.ADD_TASK,
     payload: {

@@ -16,7 +16,6 @@ export function customerLogin(email, password) {
   };
 }
 export function customerRegistration(firstName, lastName, email, password, confirmPassword) {
-  console.log(firstName, lastName, email, password, confirmPassword);
   return {
     type: actionTypes.CUSTOMER_REGISTRATION,
     payload: {

@@ -18,7 +18,6 @@ class AddNewTaskForm extends Component {
   }
 
   onPickerChange = value => {
-    console.log(value);
     this.setState({
       taskCategory: value,
     });
@@ -27,7 +26,6 @@ class AddNewTaskForm extends Component {
   onSubmit = () => {
     const { addTask } = this.props;
     const { taskName, taskCategory } = this.state;
-    console.log(moment().unix(), taskName, taskCategory);
     addTask(taskName, taskCategory, moment().unix()).then(() => {
       const { taskAdded } = this.props;
       // eslint-disable-next-line

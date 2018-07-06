@@ -23,7 +23,6 @@ export default function(state = initialState, action) {
       };
 
     case actionTypes.ADD_CATEGORY_FAIL: {
-      console.log(action);
       return {
         ...state,
         isLoading: false,

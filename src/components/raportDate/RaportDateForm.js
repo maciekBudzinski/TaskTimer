@@ -35,7 +35,6 @@ class RaportDateForm extends Component {
   onSubmit = () => {
     const { navigation } = this.props;
     const { startDate, endDate } = this.state;
-    console.log(startDate, endDate);
     navigation.navigate('Raport');
   };
 

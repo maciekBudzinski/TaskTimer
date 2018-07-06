@@ -14,7 +14,6 @@ class AddNewCategoryForm extends Component {
   onChange = (hM, s, v) => {
     let h = hM;
     if (hM < 0) {
-      console.log('ok');
       h += 360;
     }
     const rgbColor = rgb(h, s, v);

@@ -22,7 +22,6 @@ class HomeScreen extends Component {
       .getCurrentTask()
       .then(() => {
         const { currentTask, setCurrentTaskTime } = this.props;
-        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAa', currentTask);
         const currentTimeDiff = moment(
           moment().diff(moment(currentTask.StartTime).add('2', 'hours'))
         );
@@ -33,7 +32,7 @@ class HomeScreen extends Component {
         setInterval(() => {
           const { currentTaskTime } = this.props;
           iterateCurrentTaskTime(moment(currentTaskTime).add(1, 'seconds'));
-        }, 1000);
+        }, 15000);
       });
   }
 

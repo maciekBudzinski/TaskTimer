@@ -48,7 +48,6 @@ class FilterModal extends React.Component {
 
   onSubmit = () => {
     const { taskCategory, startDate, endDate } = this.state;
-    console.log(taskCategory, startDate, endDate);
   };
 
   render() {

@@ -14,9 +14,7 @@ class LoginForm extends React.Component {
   handleLoginSuccess = token => {
     const { navigation } = this.props;
     const _storeData = async () => {
-      alert('j');
       await AsyncStorage.setItem('jwt', token);
-      console.log('after');
     };
     axios.defaults.headers.common.Authorization = `${'Bearer '}${token}`;
     // const _retriveData = async () => {
