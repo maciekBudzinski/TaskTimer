@@ -26,6 +26,31 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: false,
       };
+
+    case actionTypes.CUSTOMER_REGISTRATION:
+      return {
+        ...state,
+        isLoading: true,
+        isSuccess: false,
+      };
+
+    case actionTypes.CUSTOMER_REGISTRATION_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isSuccess: true,
+      };
+    case actionTypes.CUSTOMER_REGISTRATION_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        isSuccess: false,
+      };
+    case actionTypes.CUSTOMER_LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+      };
     default:
       return {
         ...state,

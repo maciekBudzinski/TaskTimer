@@ -13,11 +13,22 @@ class LoginForm extends React.Component {
 
   handleLoginSuccess = token => {
     const { navigation } = this.props;
-    _storeData = async () => {
+    const _storeData = async () => {
+      alert('j');
       await AsyncStorage.setItem('jwt', token);
+      console.log('after');
     };
-    axios.defaults.headers.common.Authorization = `${'Bearer' + ' '}${token}`;
-    console.log('1');
+    axios.defaults.headers.common.Authorization = `${'Bearer '}${token}`;
+    // const _retriveData = async () => {
+    //   try {
+    //     const value = await AsyncStorage.getItem('jwt');
+    //     if (value !== null) {
+    //       alert('async', value);
+    //     }
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
     navigation.navigate('AppStack');
   };
 
@@ -32,6 +43,7 @@ class LoginForm extends React.Component {
   login = (email, password) => {
     const { customerLogin } = this.props;
     customerLogin(email, password).then(res => {
+      // eslint-disable-next-line
       this.props.isAuthenticated ? this.handleLoginSuccess(res.payload.data.token) : alert('błąd');
     });
     // Tutaj akcja z reduxa, if ok to navigate
@@ -70,6 +82,8 @@ class LoginForm extends React.Component {
 
 LoginForm.propTypes = {
   customerLogin: PropTypes.func.isRequired,
-  navigation: PropTypes.func.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 export default LoginForm;
