@@ -77,6 +77,7 @@ const mapStateToProps = state => ({
   tasks: state.task.tasks,
   currentTask: state.task.currentTask,
   currentTaskTime: state.task.currentTaskTime,
+  categories: state.category.categories,
 });
 
 export default connect(

@@ -51,8 +51,9 @@ class FilterModal extends React.Component {
   };
 
   render() {
-    const { closeFilters } = this.props;
+    const { closeFilters, categories } = this.props;
     const { taskCategory } = this.state;
+    console.log(this.state.taskCategory);
     return (
       <Modal onRequestClose={closeFilters}>
         <Container>
@@ -77,11 +78,13 @@ class FilterModal extends React.Component {
               <Picker
                 mode="dialog"
                 selectedValue={taskCategory}
+                style={{ marginLeft: 10 }}
                 onValueChange={this.onPickerChange}
               >
-                <Picker.Item label="Jedzenie" value="1" />
-                <Picker.Item label="Praca" value="6" />
-                <Picker.Item label="Wolne" value="2" />
+                {categories &&
+                  categories.map(c => (
+                    <Picker.Item key={c.pk} label={c.CategoryName} value={c.pk} />
+                  ))}
               </Picker>
               <Label>Data początkowa</Label>
               <DatePicker

@@ -24,6 +24,7 @@ const mapStateToProps = state => ({
   currentForm: state.navigation.currentForm,
   isAuthenticated: state.customer.isAuthenticated,
   isSuccess: state.customer.isSuccess,
+  getTaskByCategoryId: ,
 });
 
 export default connect(
