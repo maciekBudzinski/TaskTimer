@@ -1,6 +1,7 @@
 import * as actionTypes from './actionTypes';
 
-export function addTask(startDate, activityName, category) {
+export function addTask(activityName, category, startDate) {
+  console.log(activityName, category, startDate);
   return {
     type: actionTypes.ADD_TASK,
     payload: {
@@ -8,9 +9,9 @@ export function addTask(startDate, activityName, category) {
         method: 'post',
         url: '/activity/start/',
         data: {
-          startDate,
           activityName,
           category,
+          startDate,
         },
       },
     },

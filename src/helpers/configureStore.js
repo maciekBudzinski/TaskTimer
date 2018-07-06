@@ -16,7 +16,7 @@ export default function configureStore(initialState) {
   //   )
   // );
   axios.defaults.headers.common.Authorization =
-    'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXJAdXNlci5wbCIsImVtYWlsIjoidXNlckB1c2VyLnBsIiwidXNlcl9pZCI6MSwiZXhwIjoxNTMwODIxODYyfQ.yJ97n7bdjTmrVtYbKqCPKV8dBeq1FX6Qc1AqEYTDKC8';
+    'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InVzZXJAdXNlci5wbCIsImV4cCI6MTUzMDg5MTQ4MywidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJ1c2VyQHVzZXIucGwifQ.awfEBEf3nKx291MUz2NggVDWLo127C2QfJv4oqP8oIk';
 
   const client = axios.create({
     baseURL: 'http://trynich.nazwa.pl:8000/',

@@ -8,10 +8,18 @@ import TaskCard from '../common/TaskCard';
 class AddNewTaskForm extends Component {
   state = {
     taskName: '',
-    taskCategory: '',
+    taskCategory: null,
   };
 
+  componentDidMount() {
+    const { categories } = this.props;
+    this.setState({
+      taskCategory: categories[0].pk,
+    });
+  }
+
   onPickerChange = value => {
+    console.log(value);
     this.setState({
       taskCategory: value,
     });
@@ -20,9 +28,11 @@ class AddNewTaskForm extends Component {
   onSubmit = () => {
     const { navigation, addTask } = this.props;
     const { taskName, taskCategory } = this.state;
-    console.log(taskName, taskCategory);
-    addTask(moment(), taskName, taskCategory);
-    // navigation.navigate('Home');
+    console.log(moment().unix(), taskName, taskCategory);
+    addTask(taskName, taskCategory, moment().unix()).then(() => {
+      const { taskAdded } = this.props;
+      taskAdded ? navigation.navigate('Home') : alert('Nie można dodać zadania');
+    });
   };
 
   render() {
@@ -65,6 +75,7 @@ AddNewTaskForm.propTypes = {
   }).isRequired,
   categories: PropTypes.array,
   addTask: PropTypes.func.isRequired,
+  taskAdded: PropTypes.bool.isRequired,
 };
 
 AddNewTaskForm.defaultProps = {

@@ -3,12 +3,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { closeFilters } from '../modules/navigation/actions';
 import { getCategories } from '../modules/categories/actions';
+import { getTasks } from '../modules/task/actions';
 import Home from '../components/home/Home';
 
 class HomeScreen extends Component {
   componentDidMount() {
-    // eslint-disable-next-line
     this.props.getCategories();
+    this.props.getTasks();
   }
 
   render() {
@@ -17,10 +18,11 @@ class HomeScreen extends Component {
 }
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ closeFilters, getCategories }, dispatch);
+  bindActionCreators({ closeFilters, getCategories, getTasks }, dispatch);
 
 const mapStateToProps = state => ({
   filtersOpen: state.navigation.filtersOpen,
+  tasks: state.task.tasks,
 });
 
 export default connect(
