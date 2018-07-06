@@ -136,7 +136,7 @@ const RootNavigator = createStackNavigator(
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Auth',
+    initialRouteName: 'App',
   }
 );
 

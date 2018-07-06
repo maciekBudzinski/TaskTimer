@@ -29,3 +29,29 @@ export function getTasks() {
     },
   };
 }
+
+export function getCurrentTask() {
+  return {
+    type: actionTypes.GET_CURRENT_TASK,
+    payload: {
+      request: {
+        method: 'get',
+        url: '/activity/checkActivity',
+      },
+    },
+  };
+}
+
+export function setCurrentTaskTime(currentTaskTime) {
+  return {
+    type: actionTypes.SET_CURRENT_TASK_TIME,
+    payload: { currentTaskTime },
+  };
+}
+
+export function iterateCurrentTaskTime(iteratedTime) {
+  return {
+    type: actionTypes.ITERATE_CURRENT_TASK_TIME,
+    payload: { iteratedTime },
+  };
+}

@@ -4,6 +4,8 @@ const initialState = {
   isLoading: false,
   taskAdded: false,
   tasks: [],
+  currentTask: null,
+  currentTaskTime: null,
 };
 
 export default function(state = initialState, action) {
@@ -44,7 +46,34 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: false,
       };
+    case actionTypes.GET_CURRENT_TASK:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case actionTypes.GET_CURRENT_TASK_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        currentTask: action.payload.data,
+      };
+    case actionTypes.GET_CURRENT_TASK_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+      };
 
+    case actionTypes.SET_CURRENT_TASK_TIME:
+      return {
+        ...state,
+        currentTaskTime: action.payload.currentTaskTime,
+      };
+
+    case actionTypes.ITERATE_CURRENT_TASK_TIME:
+      return {
+        ...state,
+        currentTaskTime: action.payload.iteratedTime,
+      };
     default:
       return {
         ...state,
