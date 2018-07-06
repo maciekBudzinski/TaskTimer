@@ -22,12 +22,13 @@ export default function(state = initialState, action) {
         isLoading: false,
       };
 
-    case actionTypes.ADD_CATEGORY_FAIL:
+    case actionTypes.ADD_CATEGORY_FAIL: {
+      console.log(action);
       return {
         ...state,
         isLoading: false,
       };
-
+    }
     case actionTypes.GET_CATEGORIES:
       return {
         ...state,

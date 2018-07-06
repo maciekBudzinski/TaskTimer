@@ -1,9 +1,8 @@
-import { Form, Item, Label, Input, Picker, View, Text, Button, Icon } from 'native-base';
+import { Form, Item, Label, Input, Picker, Text, Button, Icon } from 'native-base';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNavigation } from 'react-navigation';
 import moment from 'moment';
-import TaskCard from '../common/TaskCard';
 
 class AddNewTaskForm extends Component {
   state = {
@@ -18,7 +17,7 @@ class AddNewTaskForm extends Component {
   };
 
   onSubmit = () => {
-    const { navigation, addTask } = this.props;
+    const { addTask } = this.props;
     const { taskName, taskCategory } = this.state;
     console.log(taskName, taskCategory);
     addTask(moment(), taskName, taskCategory);
@@ -60,9 +59,6 @@ class AddNewTaskForm extends Component {
 }
 
 AddNewTaskForm.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
   categories: PropTypes.array,
   addTask: PropTypes.func.isRequired,
 };

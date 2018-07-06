@@ -3,7 +3,7 @@ import { Container } from 'native-base';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeForm } from '../modules/navigation/actions';
-import { customerLogin } from '../modules/customer/actions';
+import { customerLogin, customerRegistration } from '../modules/customer/actions';
 
 import Start from '../components/start/Start';
 
@@ -17,11 +17,13 @@ class StartScreen extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ changeForm, customerLogin }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ changeForm, customerLogin, customerRegistration }, dispatch);
 
 const mapStateToProps = state => ({
   currentForm: state.navigation.currentForm,
   isAuthenticated: state.customer.isAuthenticated,
+  isSuccess: state.customer.isSuccess,
 });
 
 export default connect(

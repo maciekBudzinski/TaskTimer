@@ -79,7 +79,6 @@ const Drawer = createDrawerNavigator(
         drawerIcon: <Icon name="md-paper" />,
       },
     },
-<<<<<<< HEAD
     // Logout: {
     //   screen: StartScreen,
     //   navigationOptions: {
@@ -88,21 +87,6 @@ const Drawer = createDrawerNavigator(
     //     drawerLockMode: 'locked-closed',
     //   },
     // },
-=======
-    Logout: {
-      screen: StartScreen,
-      navigationOptions: {
-        title: 'Wyloguj',
-        drawerIcon: (
-          <label>
-            <Icon name="log-out" />
-            <Text>Wyloguj</Text>
-          </label>
-        ),
-        drawerLockMode: 'locked-closed',
-      },
-    },
->>>>>>> 57a168c7193162f3cfa9467621088ff24b1301dc
   },
   {
     headerMode: 'none',

@@ -8,7 +8,7 @@ class RegisterForm extends React.Component {
     lastName: '',
     email: '',
     password: '',
-    repeatPassword: '',
+    confirmPassword: '',
   };
 
   handleCheck = () => {
@@ -19,9 +19,21 @@ class RegisterForm extends React.Component {
     });
   };
 
+  registeration = (firstName, lastName, email, password, confirmPassword) => {
+    const { customerRegistration, changeForm } = this.props;
+    if ((firstName, lastName, email, password, confirmPassword)) {
+      customerRegistration(firstName, lastName, email, password, confirmPassword).then(() => {
+        const { isSuccess } = this.props;
+        // eslint-disable-next-line
+        isSuccess ? changeForm('login') : alert('błąd');
+      });
+    } else {
+      alert('Błąd2');
+    }
+  };
+
   render() {
-    const { register } = this.props;
-    const { firstName, lastName, email, password, repeatPassword } = this.state;
+    const { firstName, lastName, email, password, confirmPassword } = this.state;
     return (
       <Form>
         <Item stackedLabel>
@@ -43,15 +55,15 @@ class RegisterForm extends React.Component {
         <Item stackedLabel>
           <Label>Powtórz hasło</Label>
           <Input
-            value={repeatPassword}
-            onChangeText={text => this.setState({ repeatPassword: text })}
+            value={confirmPassword}
+            onChangeText={text => this.setState({ confirmPassword: text })}
           />
         </Item>
         <Button
           style={{ width: `100%`, alignItems: 'center', justifyContent: 'center' }}
           primary
-          disabled={(firstName && lastName && email && password && repeatPassword) === ''}
-          onPress={register}
+          disabled={(firstName && lastName && email && password && confirmPassword) === ''}
+          onPress={() => this.registeration(firstName, lastName, email, password, confirmPassword)}
         >
           <Text>Zarejestruj</Text>
         </Button>
@@ -61,6 +73,8 @@ class RegisterForm extends React.Component {
 }
 
 RegisterForm.propTypes = {
-  register: PropTypes.func.isRequired,
+  customerRegistration: PropTypes.func.isRequired,
+  isSuccess: PropTypes.bool.isRequired,
+  changeForm: PropTypes.func.isRequired,
 };
 export default RegisterForm;
