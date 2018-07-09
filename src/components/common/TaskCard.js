@@ -12,16 +12,7 @@ const deleteTask = (pk, deleteTask) => {
   alert('Usunięto zadanie');
 };
 
-const TaskCard = ({
-  taskActive,
-  deleteTask,
-  stopTask,
-  getTasks,
-  getCurrentTask,
-  stopTaskAction,
-  pk,
-  ...props
-}) => (
+const TaskCard = ({ taskActive, deleteTask, stopTask, getTasks, getCurrentTask, stopTaskAction, pk, ...props }) => (
   <View style={{ paddingVertical: 2 }}>
     <SwipeRow
       leftOpenValue={75}
@@ -29,12 +20,7 @@ const TaskCard = ({
       style={[styles.zeroPadding, { marginHorizontal: 1 }]}
       left={
         taskActive ? (
-          <StopButton
-            stopTask={stopTaskAction}
-            pk={pk}
-            getTasks={getTasks}
-            getCurrentTask={getCurrentTask}
-          />
+          <StopButton stopTask={stopTaskAction} pk={pk} getTasks={getTasks} getCurrentTask={getCurrentTask} />
         ) : (
           <DeleteButton pk={pk} deleteTask={deleteTask} />
         )
@@ -42,12 +28,7 @@ const TaskCard = ({
       body={<CardBody taskActive={taskActive} {...props} />}
       right={
         taskActive ? (
-          <StopButton
-            stopTask={stopTaskAction}
-            pk={pk}
-            getTasks={getTasks}
-            getCurrentTask={getCurrentTask}
-          />
+          <StopButton stopTask={stopTaskAction} pk={pk} getTasks={getTasks} getCurrentTask={getCurrentTask} />
         ) : (
           <DeleteButton pk={pk} deleteTask={deleteTask} />
         )
@@ -68,15 +49,7 @@ const StopButton = ({ stopTask, getTasks, getCurrentTask, pk }) => (
   </Button>
 );
 
-const CardBody = ({
-  ActivityName,
-  Category,
-  StopTime,
-  StartTime,
-  pk,
-  taskActive,
-  currentTaskTime,
-}) => {
+const CardBody = ({ ActivityName, Category, StopTime, StartTime, pk, taskActive, currentTaskTime }) => {
   const timeDiff = moment(moment(StopTime).diff(StartTime)).add(-1, 'hours');
   return (
     <View style={{ flex: 1, padding: 5, borderWidth: 1, borderColor: 'grey' }}>
@@ -94,11 +67,7 @@ const CardBody = ({
             {moment(moment(currentTaskTime).add(-1, 'hours')).format('HH:mm:ss')}
           </Text>
         )}
-        {taskActive === false && (
-          <Text style={{ fontSize: 24, fontWeight: '400' }}>
-            {moment(timeDiff).format('HH:mm:ss')}
-          </Text>
-        )}
+        {taskActive === false && <Text style={{ fontSize: 24, fontWeight: '400' }}>{moment(timeDiff).format('HH:mm:ss')}</Text>}
       </View>
     </View>
   );

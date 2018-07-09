@@ -39,14 +39,8 @@ class AddNewTaskForm extends Component {
           <Input value={taskName} onChangeText={text => this.setState({ taskName: text })} />
         </Item>
         <Label style={{ fontSize: 15, marginLeft: 15, color: '#575757' }}>Wybierz kategorię</Label>
-        <Picker
-          mode="dialog"
-          selectedValue={taskCategory}
-          style={{ marginLeft: 10 }}
-          onValueChange={this.onPickerChange}
-        >
-          {categories &&
-            categories.map(c => <Picker.Item key={c.pk} label={c.CategoryName} value={c.pk} />)}
+        <Picker mode="dialog" selectedValue={taskCategory} style={{ marginLeft: 10 }} onValueChange={this.onPickerChange}>
+          {categories && categories.map(c => <Picker.Item key={c.pk} label={c.CategoryName} value={c.pk} />)}
         </Picker>
         <Button
           iconLeft

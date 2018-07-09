@@ -40,10 +40,7 @@ class AddNewCategoryForm extends Component {
         <Form>
           <Item stackedLabel>
             <Label>Nazwa</Label>
-            <Input
-              value={categoryName}
-              onChangeText={text => this.setState({ categoryName: text })}
-            />
+            <Input value={categoryName} onChangeText={text => this.setState({ categoryName: text })} />
           </Item>
           <Item stackedLabel>
             <Label>Kolor kategorii</Label>
@@ -55,11 +52,7 @@ class AddNewCategoryForm extends Component {
               />
             </View>
           </Item>
-          <Button
-            style={{ width: `100%`, alignItems: 'center', justifyContent: 'center' }}
-            primary
-            onPress={this.onSubmit}
-          >
+          <Button style={{ width: `100%`, alignItems: 'center', justifyContent: 'center' }} primary onPress={this.onSubmit}>
             <Text>Dodaj</Text>
           </Button>
         </Form>
