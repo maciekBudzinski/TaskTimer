@@ -62,6 +62,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
+        currentTask: null,
       };
 
     case actionTypes.SET_CURRENT_TASK_TIME:

@@ -21,6 +21,7 @@ class HomeScreen extends Component {
     getTasks();
     // eslint-disable-next-line
     this.props.getCurrentTask()
+      // to niżej przenieść do akcji
       .then(() => {
         const { currentTask, setCurrentTaskTime } = this.props;
         const currentTimeDiff = moment(
@@ -36,6 +37,19 @@ class HomeScreen extends Component {
         }, 15000);
       });
   }
+
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.tasks !== prevProps.tasks) {
+      console.log('update');
+      getCurrentTask();
+    }
+  }
+  // shouldComponentUpdate() {
+  //   const { getCurrentTask } = this.props;
+  //   console.log('shouldComponentUpdate');
+  //   getCurrentTask();
+  // }
 
   render() {
     return <Home {...this.props} />;

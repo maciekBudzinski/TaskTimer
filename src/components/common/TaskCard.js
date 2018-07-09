@@ -4,24 +4,54 @@ import moment, { now } from 'moment';
 import { Text, View, Icon, SwipeRow, Button } from 'native-base';
 import styles from '../../helpers/styles';
 
-const stopTask = () => {
+const stopTask = ({ pk, stopTask }) => {
   alert('Zatrzymano zadanie');
 };
 
 const deleteTask = (pk, deleteTask) => {
-  this.props.deleteTask(pk);
   alert('Usunięto zadanie');
 };
 
-const TaskCard = ({ taskActive, deleteTask, pk, ...props }) => (
+const TaskCard = ({
+  taskActive,
+  deleteTask,
+  stopTask,
+  getTasks,
+  getCurrentTask,
+  stopTaskAction,
+  pk,
+  ...props
+}) => (
   <View style={{ paddingVertical: 2 }}>
     <SwipeRow
       leftOpenValue={75}
       rightOpenValue={-75}
       style={[styles.zeroPadding, { marginHorizontal: 1 }]}
-      left={taskActive ? <StopButton /> : <DeleteButton pk={pk} deleteTask={deleteTask} />}
+      left={
+        taskActive ? (
+          <StopButton
+            stopTask={stopTaskAction}
+            pk={pk}
+            getTasks={getTasks}
+            getCurrentTask={getCurrentTask}
+          />
+        ) : (
+          <DeleteButton pk={pk} deleteTask={deleteTask} />
+        )
+      }
       body={<CardBody taskActive={taskActive} {...props} />}
-      right={taskActive ? <StopButton /> : <DeleteButton pk={pk} deleteTask={deleteTask} />}
+      right={
+        taskActive ? (
+          <StopButton
+            stopTask={stopTaskAction}
+            pk={pk}
+            getTasks={getTasks}
+            getCurrentTask={getCurrentTask}
+          />
+        ) : (
+          <DeleteButton pk={pk} deleteTask={deleteTask} />
+        )
+      }
     />
   </View>
 );
@@ -32,8 +62,8 @@ const DeleteButton = ({ deleteTask, pk }) => (
   </Button>
 );
 
-const StopButton = () => (
-  <Button primary onPress={stopTask}>
+const StopButton = ({ stopTask, getTasks, getCurrentTask, pk }) => (
+  <Button primary onPress={() => stopTask(JSON.stringify(pk), moment().unix())}>
     <Icon active name="square" />
   </Button>
 );
@@ -48,7 +78,6 @@ const CardBody = ({
   currentTaskTime,
 }) => {
   const timeDiff = moment(moment(StopTime).diff(StartTime)).add(-1, 'hours');
-  // const currentTimeDiff = moment(moment().diff(moment(StartTime).add('3', 'hours')));
   return (
     <View style={{ flex: 1, padding: 5, borderWidth: 1, borderColor: 'grey' }}>
       <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>

@@ -17,6 +17,7 @@ class LoginForm extends React.Component {
       await AsyncStorage.setItem('jwt', token);
     };
     axios.defaults.headers.common.Authorization = `${'Bearer '}${token}`;
+
     // const _retriveData = async () => {
     //   try {
     //     const value = await AsyncStorage.getItem('jwt');

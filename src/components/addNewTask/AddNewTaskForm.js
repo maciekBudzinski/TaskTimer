@@ -24,13 +24,9 @@ class AddNewTaskForm extends Component {
   };
 
   onSubmit = () => {
-    const { addTask } = this.props;
+    const { addTask, getCurrentTask, navigation } = this.props;
     const { taskName, taskCategory } = this.state;
-    addTask(taskName, taskCategory, moment().unix()).then(() => {
-      const { taskAdded, navigation } = this.props;
-      // eslint-disable-next-line
-      taskAdded ? navigation.navigate('Home') : alert('Nie można dodać zadania');
-    });
+    addTask(taskName, taskCategory, moment().unix()).then(() => navigation.navigate('Home'));
   };
 
   render() {

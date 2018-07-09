@@ -1,21 +1,23 @@
 import * as actionTypes from './actionTypes';
 
-export function addTask(activityName, category, startDate) {
-  return {
-    type: actionTypes.ADD_TASK,
-    payload: {
-      request: {
-        method: 'post',
-        url: '/activity/start/',
-        data: {
-          activityName,
-          category,
-          startDate,
-        },
+export const addTask = (activityName, category, startDate) => ({
+  type: actionTypes.ADD_TASK,
+  payload: {
+    request: {
+      method: 'post',
+      url: '/activity/start/',
+      data: {
+        activityName,
+        category,
+        startDate,
       },
     },
-  };
-}
+    options: {
+      onSuccess: ({ dispatch }) => dispatch(getCurrentTask()),
+      onError: () => console.log('fail'),
+    },
+  },
+});
 
 export function getTasks() {
   return {
@@ -72,12 +74,26 @@ export function stopTask(activityId, stopDate) {
   return {
     type: actionTypes.STOP_TASK,
     payload: {
-      method: 'post',
-      url: '/activity/stop/',
-      data: {
-        activityId,
-        stopDate,
+      request: {
+        method: 'post',
+        url: '/activity/stop/',
+        data: {
+          activityId,
+          stopDate,
+        },
       },
+      // options: {
+      //   onSuccess: () => dispatch(getTasks()),
+      //   onError: () => console.log('fail'),
+      // },
     },
   };
 }
+
+export const stopTaskAction = (activityId, stopDate) => dispatch => {
+  dispatch(stopTask(activityId, stopDate))
+    .then(() => dispatch(getTasks()))
+    .then(() => dispatch(getCurrentTask()));
+};
+
+export const addTaskAction = dispatch => {};

@@ -9,7 +9,7 @@ const TaskList = ({ tasks, currentTask }) => {
 
   return (
     <List>
-      <TaskContainer {...currentTask} taskActive />
+      {currentTask && <TaskContainer {...currentTask} taskActive />}
       <Separator bordered style={[styles.zeroPadding, styles.listSeparator]}>
         <Icon name="time" />
         <Text style={[styles.listSeparatorText, { paddingLeft: 5 }]}>Poprzednie zadania</Text>

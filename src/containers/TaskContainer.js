@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import TaskCard from '../components/common/TaskCard';
-import { closeFilters } from '../modules/navigation/actions';
-import { getCategories } from '../modules/categories/actions';
+
 import {
+  stopTask,
+  deleteTask,
   getTasks,
   getCurrentTask,
-  setCurrentTaskTime,
-  iterateCurrentTaskTime,
-  deleteTask,
+  stopTaskAction,
 } from '../modules/task/actions';
 
 class TaskContainer extends Component {
@@ -23,6 +21,10 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       deleteTask,
+      stopTask,
+      getTasks,
+      getCurrentTask,
+      stopTaskAction,
     },
     dispatch
   );
