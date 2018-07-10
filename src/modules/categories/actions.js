@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { NavigationActions } from 'react-navigation';
 import * as actionTypes from './actionTypes';
-import { navigateActions } from '../navigation/actions';
 
 export const addCategory = (CategoryName, Color) => dispatch => {
   const request = () => ({ type: actionTypes.ADD_CATEGORY });

@@ -20,13 +20,13 @@ export default function configureStore(initialState) {
   axios.defaults.headers.common.Authorization =
     'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzEyMzc0MTcsImVtYWlsIjoidXNlckB1c2VyLnBsIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJ1c2VyQHVzZXIucGwifQ.YJfkIBcmoyFh2qONQZBlkSdV1iPUUUayZsfuSZMcXDA';
 
-  const reactNvigationReduxMiddleware = createReactNavigationReduxMiddleware('root', state => state.nav);
+  const reactNavigationReduxMiddleware = createReactNavigationReduxMiddleware('root', state => state.nav);
 
   const store = createStore(
     rootReducer,
     initialState,
     compose(
-      applyMiddleware(thunk, reactNvigationReduxMiddleware),
+      applyMiddleware(thunk, reactNavigationReduxMiddleware),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );
