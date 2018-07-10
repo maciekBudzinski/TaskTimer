@@ -4,6 +4,7 @@ import { ColorWheel } from 'react-native-color-wheel';
 import PropTypes from 'prop-types';
 
 const rgb = require('hsv-rgb');
+const rgbHex = require('rgb-hex');
 
 class AddNewCategoryForm extends Component {
   state = {
@@ -17,20 +18,17 @@ class AddNewCategoryForm extends Component {
       h += 360;
     }
     const rgbColor = rgb(h, s, v);
-    const rgbColorToState = `rgb(${rgbColor[0]},${rgbColor[1]},${rgbColor[2]})`;
+    const hexColor = rgbHex(rgbColor[0], rgbColor[1], rgbColor[2]);
+    const hexColorToState = `#${hexColor}`;
     this.setState({
-      categoryColor: rgbColorToState,
+      categoryColor: hexColorToState,
     });
   };
 
   onSubmit = () => {
     const { categoryName, categoryColor } = this.state;
     const { addCategory, navigation } = this.props;
-    addCategory(categoryName, categoryColor).then(() => {
-      const { isSuccess } = this.props;
-      // eslint-disable-next-line
-      isSuccess ? navigation.navigate('Home') : alert('Nie można dodać kategorii');
-    });
+    addCategory(categoryName, categoryColor);
   };
 
   render() {

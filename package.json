@@ -17,6 +17,7 @@
     "react-native": "0.55.4",
     "react-native-color-wheel": "^0.1.5",
     "react-navigation": "^2.5.5",
+    "react-navigation-redux-helpers": "^2.0.2",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-axios-middleware": "^4.0.0",

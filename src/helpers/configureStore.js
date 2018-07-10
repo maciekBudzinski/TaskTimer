@@ -18,7 +18,7 @@ export default function configureStore(initialState) {
 
   axios.defaults.baseURL = 'http://trynich.nazwa.pl:8000/';
   axios.defaults.headers.common.Authorization =
-    'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXJAdXNlci5wbCIsImVtYWlsIjoidXNlckB1c2VyLnBsIiwidXNlcl9pZCI6MSwiZXhwIjoxNTMxMTUxODk3fQ.lLodMmCiFxCJDOwuSzpNxsda0UE1x5TsEzVmNXNrUkc';
+    'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzEyMzc0MTcsImVtYWlsIjoidXNlckB1c2VyLnBsIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJ1c2VyQHVzZXIucGwifQ.YJfkIBcmoyFh2qONQZBlkSdV1iPUUUayZsfuSZMcXDA';
 
   const store = createStore(
     rootReducer,

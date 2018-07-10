@@ -49,7 +49,6 @@ export const getCurrentTask = () => dispatch => {
       let currentTimeDiff = moment(moment().diff(moment(currentTask.StartTime).add('2', 'hours')));
       dispatch(success(response));
       dispatch(setCurrentTaskTime(currentTimeDiff));
-      console.log(this.state);
       setInterval(() => {
         currentTimeDiff = moment(currentTimeDiff).add(1, 'seconds');
         dispatch(iterateCurrentTaskTime(currentTimeDiff));
