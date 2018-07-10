@@ -2,8 +2,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
+import { reduxifyNavigator, createReactNavigationReduxMiddleware, createNavigationReducer } from 'react-navigation-redux-helpers';
 import rootReducer from './rootReducer';
-
 // const DEVELOPMENT = process.env.NODE_ENV === 'development' ? true : undefined;
 
 export default function configureStore(initialState) {
@@ -20,11 +20,13 @@ export default function configureStore(initialState) {
   axios.defaults.headers.common.Authorization =
     'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzEyMzc0MTcsImVtYWlsIjoidXNlckB1c2VyLnBsIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJ1c2VyQHVzZXIucGwifQ.YJfkIBcmoyFh2qONQZBlkSdV1iPUUUayZsfuSZMcXDA';
 
+  const middleware = createReactNavigationReduxMiddleware('root', state => state.nav);
+
   const store = createStore(
     rootReducer,
     initialState,
     compose(
-      applyMiddleware(thunk),
+      applyMiddleware(thunk, middleware),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   );

@@ -19,6 +19,7 @@ export const addCategory = (CategoryName, Color) => dispatch => {
   })
     .then(response => {
       dispatch(success(response));
+      dispatch(NavigationActions.navigate({ routeName: 'Home' }));
     })
     .catch(error => dispatch(fail(error)));
 };
