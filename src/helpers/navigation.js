@@ -1,11 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native';
-import {
-  createStackNavigator,
-  createDrawerNavigator,
-  createSwitchNavigator,
-  DrawerItems,
-} from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator, createSwitchNavigator, DrawerItems } from 'react-navigation';
 import { Icon, View, Text, Footer, label } from 'native-base';
 import HomeScreen from '../containers/HomeScreen';
 import StartScreen from '../containers/StartScreen';
