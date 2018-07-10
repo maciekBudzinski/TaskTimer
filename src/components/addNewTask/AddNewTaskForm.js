@@ -24,9 +24,9 @@ class AddNewTaskForm extends Component {
   };
 
   onSubmit = () => {
-    const { addTask, getCurrentTask, navigation } = this.props;
+    const { addTask } = this.props;
     const { taskName, taskCategory } = this.state;
-    addTask(taskName, taskCategory, moment().unix()).then(() => navigation.navigate('Home'));
+    addTask(taskName, taskCategory, moment().unix());
   };
 
   render() {

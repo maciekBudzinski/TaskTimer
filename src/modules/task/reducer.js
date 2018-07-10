@@ -5,6 +5,7 @@ const initialState = {
   taskAdded: false,
   taskStopped: false,
   tasks: [],
+  isActiveTask: false,
   currentTask: null,
   currentTaskTime: null,
 };
@@ -23,6 +24,7 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: false,
         taskAdded: true,
+        isActiveTask: true,
       };
 
     case actionTypes.ADD_TASK_FAIL:
@@ -36,12 +38,13 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: true,
       };
-    case actionTypes.GET_TASKS_SUCCESS:
+    case actionTypes.GET_TASKS_SUCCESS: {
       return {
         ...state,
         isLoading: false,
         tasks: action.payload.data,
       };
+    }
     case actionTypes.GET_TASKS_FAIL:
       return {
         ...state,
@@ -57,6 +60,7 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: false,
         currentTask: action.payload.data,
+        isActiveTask: true,
       };
     case actionTypes.GET_CURRENT_TASK_FAIL:
       return {
@@ -89,7 +93,7 @@ export default function(state = initialState, action) {
       };
 
     case actionTypes.DELETE_TASK_SUCCESS: {
-      const index = state.tasks.map(t => t.pk).indexOf(state.deletingTask);
+      const index = state.tasks.map(t => t.pk).indexOf(action.payload.pk);
       return {
         ...state,
         isLoading: false,
@@ -113,6 +117,8 @@ export default function(state = initialState, action) {
         ...state,
         isLoading: false,
         taskStopped: true,
+        currentTask: null,
+        isActiveTask: false,
       };
     case actionTypes.STOP_TASK_FAIL: {
       return {

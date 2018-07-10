@@ -1,6 +1,39 @@
 import axios from 'axios';
+import { NavigationActions } from 'react-navigation';
 import moment from 'moment';
 import * as actionTypes from './actionTypes';
+
+export const setCurrentTaskTime = currentTaskTime => ({
+  type: actionTypes.SET_CURRENT_TASK_TIME,
+  payload: { currentTaskTime },
+});
+
+export const iterateCurrentTaskTime = iteratedTime => ({
+  type: actionTypes.ITERATE_CURRENT_TASK_TIME,
+  payload: { iteratedTime },
+});
+
+export const getCurrentTask = () => dispatch => {
+  const request = () => ({ type: actionTypes.GET_CURRENT_TASK });
+  const success = response => ({ type: actionTypes.GET_CURRENT_TASK_SUCCESS, payload: response });
+  const fail = error => ({ type: actionTypes.GET_CURRENT_TASK_FAIL, payload: error });
+  dispatch(request());
+  axios({
+    method: 'get',
+    url: '/activity/checkActivity',
+  })
+    .then(response => {
+      const currentTask = response.data;
+      const currentTimeDiff = moment(moment().diff(moment(currentTask.StartTime).add('2', 'hours')));
+      dispatch(success(response));
+      dispatch(setCurrentTaskTime(currentTimeDiff));
+      // setInterval(() => {
+      //   currentTimeDiff = moment(currentTimeDiff).add(1, 'seconds');
+      //   dispatch(iterateCurrentTaskTime(currentTimeDiff));
+      // }, 1000);
+    })
+    .catch(error => dispatch(fail(error)));
+};
 
 export const addTask = (activityName, category, startDate) => dispatch => {
   const request = () => ({ type: actionTypes.ADD_TASK });
@@ -17,7 +50,12 @@ export const addTask = (activityName, category, startDate) => dispatch => {
       startDate,
     },
   })
-    .then(response => dispatch(success(response)))
+    .then(response => {
+      dispatch(success(response));
+      dispatch(getCurrentTask());
+      // FIXME
+      setTimeout(() => dispatch(NavigationActions.navigate({ routeName: 'Home' })), 50);
+    })
     .catch(error => dispatch(fail(error)));
 };
 
@@ -35,41 +73,9 @@ export const getTasks = () => dispatch => {
     .catch(error => dispatch(fail(error)));
 };
 
-export const getCurrentTask = () => dispatch => {
-  const request = () => ({ type: actionTypes.GET_CURRENT_TASK });
-  const success = response => ({ type: actionTypes.GET_CURRENT_TASK_SUCCESS, payload: response });
-  const fail = error => ({ type: actionTypes.GET_CURRENT_TASK_FAIL, payload: error });
-  dispatch(request());
-  axios({
-    method: 'get',
-    url: '/activity/checkActivity',
-  })
-    .then(response => {
-      const currentTask = response.data;
-      let currentTimeDiff = moment(moment().diff(moment(currentTask.StartTime).add('2', 'hours')));
-      dispatch(success(response));
-      dispatch(setCurrentTaskTime(currentTimeDiff));
-      setInterval(() => {
-        currentTimeDiff = moment(currentTimeDiff).add(1, 'seconds');
-        dispatch(iterateCurrentTaskTime(currentTimeDiff));
-      }, 10000);
-    })
-    .catch(error => dispatch(fail(error)));
-};
-
-export const setCurrentTaskTime = currentTaskTime => ({
-  type: actionTypes.SET_CURRENT_TASK_TIME,
-  payload: { currentTaskTime },
-});
-
-export const iterateCurrentTaskTime = iteratedTime => ({
-  type: actionTypes.ITERATE_CURRENT_TASK_TIME,
-  payload: { iteratedTime },
-});
-
 export const deleteTask = pk => dispatch => {
   const request = () => ({ type: actionTypes.DELETE_TASK, payload: pk });
-  const success = response => ({ type: actionTypes.DELETE_TASK_SUCCESS, payload: response });
+  const success = response => ({ type: actionTypes.DELETE_TASK_SUCCESS, payload: { response, pk } });
   const fail = error => ({ type: actionTypes.DELETE_TASK_FAIL, payload: error });
   dispatch(request());
   axios({
@@ -93,6 +99,10 @@ export const stopTask = (activityId, stopDate) => dispatch => {
       stopDate,
     },
   })
-    .then(response => dispatch(success(response)))
+    .then(response => {
+      dispatch(success(response));
+      dispatch(getCurrentTask());
+      dispatch(getTasks());
+    })
     .catch(error => dispatch(fail(error)));
 };

@@ -10,9 +10,9 @@ import Home from '../components/home/Home';
 class HomeScreen extends Component {
   componentDidMount() {
     const { getCategories, getTasks, getCurrentTask } = this.props;
-    getTasks();
-    getCurrentTask();
     getCategories();
+    getCurrentTask();
+    getTasks();
   }
 
   render() {
