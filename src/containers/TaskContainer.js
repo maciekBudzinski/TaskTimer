@@ -24,7 +24,7 @@ const mapDispatchToProps = dispatch =>
   );
 
 const mapStateToProps = state => ({
-  currentTaskTime: state.task.currentTaskTime,
+  // currentTaskTime: state.task.currentTaskTime,
   categories: state.category.categories,
 });
 

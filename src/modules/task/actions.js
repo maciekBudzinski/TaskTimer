@@ -3,6 +3,8 @@ import { NavigationActions } from 'react-navigation';
 import moment from 'moment';
 import * as actionTypes from './actionTypes';
 
+let intervalId;
+
 export const setCurrentTaskTime = currentTaskTime => ({
   type: actionTypes.SET_CURRENT_TASK_TIME,
   payload: { currentTaskTime },
@@ -24,13 +26,13 @@ export const getCurrentTask = () => dispatch => {
   })
     .then(response => {
       const currentTask = response.data;
-      const currentTimeDiff = moment(moment().diff(moment(currentTask.StartTime).add('2', 'hours')));
+      let currentTimeDiff = moment(moment().diff(moment(currentTask.StartTime).add('2', 'hours')));
       dispatch(success(response));
       dispatch(setCurrentTaskTime(currentTimeDiff));
-      // setInterval(() => {
-      //   currentTimeDiff = moment(currentTimeDiff).add(1, 'seconds');
-      //   dispatch(iterateCurrentTaskTime(currentTimeDiff));
-      // }, 1000);
+      intervalId = setInterval(() => {
+        currentTimeDiff = moment(currentTimeDiff).add(1, 'seconds');
+        dispatch(iterateCurrentTaskTime(currentTimeDiff));
+      }, 1000);
     })
     .catch(error => dispatch(fail(error)));
 };
@@ -63,7 +65,6 @@ export const getTasks = () => dispatch => {
   const request = () => ({ type: actionTypes.GET_TASKS });
   const success = response => ({ type: actionTypes.GET_TASKS_SUCCESS, payload: response });
   const fail = error => ({ type: actionTypes.GET_TASKS_FAIL, payload: error });
-
   dispatch(request());
   axios({
     method: 'get',
@@ -103,6 +104,7 @@ export const stopTask = (activityId, stopDate) => dispatch => {
       dispatch(success(response));
       dispatch(getCurrentTask());
       dispatch(getTasks());
+      clearInterval(intervalId);
     })
     .catch(error => dispatch(fail(error)));
 };

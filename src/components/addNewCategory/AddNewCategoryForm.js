@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { Content, Text, Form, Item, Label, Input, Button, View } from 'native-base';
 import { ColorWheel } from 'react-native-color-wheel';
 import PropTypes from 'prop-types';
-
-const rgb = require('hsv-rgb');
-const rgbHex = require('rgb-hex');
+import rgb from 'hsv-rgb';
+import rgbHex from 'rgb-hex';
 
 class AddNewCategoryForm extends Component {
   state = {

@@ -31,53 +31,57 @@ const OptionButton = ({ deleteTask, stopTask, taskActive, pk }) => {
     </Button>
   );
 };
+
 class CardBody extends React.Component {
   state = {
-    time: 0,
+    categoryColor: null,
+    categoryName: null,
   };
 
   componentDidMount() {
-    setInterval(() => this.setState(prevState => ({ time: prevState.time + 1 })), 1000);
-  }
-
-  render() {
-    const { ActivityName, Category, StopTime, StartTime, taskActive, currentTaskTime, categories } = this.props;
-    const { time } = this.state;
-    const timeDiff = moment(moment(StopTime).diff(StartTime)).add(-1, 'hours');
-    // const categoryIndex = categories.map(c => c.pk).indexOf(Category);
-    // const categoryName = categories[categoryIndex].CategoryName;
-    // const categoryColor = categories[categoryIndex].Color;
-    if (categories.length > 0) {
+    const { categories, Category } = this.props;
+    if (categories && categories.length > 0) {
       const categoryIndex = categories.map(c => c.pk).indexOf(Category);
       const categoryName = categories[categoryIndex].CategoryName;
       const categoryColor = categories[categoryIndex].Color;
-      return (
-        <View style={{ flex: 1, padding: 5, borderWidth: 1, borderColor: 'grey' }}>
-          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text>
-              {moment(moment(StartTime))
-                .add(2, 'hours')
-                .format('DD.MM.YYYY, HH:mm:ss')}
-            </Text>
-            <View style={{ flexDirection: 'row' }}>
-              <Icon name="bookmark" style={{ fontSize: 25, color: `${categoryColor}`, paddingRight: 5 }} />
-              <Text>{categoryName}</Text>
-            </View>
-          </View>
-          <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={{ fontSize: 24, fontWeight: '400' }}>{ActivityName}</Text>
-            {taskActive === true && (
-              <Text style={{ fontSize: 24, fontWeight: '400', color: 'green' }}>
-                {time}
-                {/* {moment(moment(currentTaskTime).add(-1, 'hours')).format('HH:mm:ss')} */}
-              </Text>
-            )}
-            {taskActive === false && <Text style={{ fontSize: 24, fontWeight: '400' }}>{moment(timeDiff).format('HH:mm:ss')}</Text>}
+      this.setState({
+        categoryName,
+        categoryColor,
+      });
+    }
+  }
+
+  render() {
+    console.log('render');
+    const { ActivityName, Category, StopTime, StartTime, taskActive, currentTaskTime, categories } = this.props;
+    const { categoryName, categoryColor } = this.state;
+    const timeDiff = moment(moment(StopTime).diff(StartTime)).add(-1, 'hours');
+
+    return (
+      <View style={{ flex: 1, padding: 5, borderWidth: 1, borderColor: 'grey' }}>
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text>
+            {moment(moment(StartTime))
+              .add(2, 'hours')
+              .format('DD.MM.YYYY, HH:mm:ss')}
+          </Text>
+          <View style={{ flexDirection: 'row' }}>
+            <Icon name="bookmark" style={{ fontSize: 25, color: `${categoryColor}`, paddingRight: 5 }} />
+            <Text>{categoryName}</Text>
           </View>
         </View>
-      );
-    }
-    return null;
+        <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text style={{ fontSize: 24, fontWeight: '400' }}>{ActivityName}</Text>
+          {taskActive === true && (
+            <Text style={{ fontSize: 24, fontWeight: '400', color: 'green' }}>
+              {/* {time} */}
+              {moment(moment(currentTaskTime).add(-1, 'hours')).format('HH:mm:ss')}
+            </Text>
+          )}
+          {taskActive === false && <Text style={{ fontSize: 24, fontWeight: '400' }}>{moment(timeDiff).format('HH:mm:ss')}</Text>}
+        </View>
+      </View>
+    );
   }
 }
 

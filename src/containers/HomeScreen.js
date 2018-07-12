@@ -16,9 +16,11 @@ class HomeScreen extends Component {
   }
 
   render() {
-    return <Home {...this.props} />;
+    const { categories } = this.props;
+    return categories.length > 0 && <Home {...this.props} />;
   }
 }
+
 HomeScreen.propTypes = {
   getCategories: PropTypes.func.isRequired,
   getTasks: PropTypes.func.isRequired,
