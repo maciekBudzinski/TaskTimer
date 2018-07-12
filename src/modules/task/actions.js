@@ -108,3 +108,7 @@ export const stopTask = (activityId, stopDate) => dispatch => {
     })
     .catch(error => dispatch(fail(error)));
 };
+
+export const stopInterval = () => {
+  clearInterval(intervalId);
+};

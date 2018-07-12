@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { closeFilters } from '../modules/navigation/actions';
 import { getCategories } from '../modules/categories/actions';
-import { getTasks, getCurrentTask, setCurrentTaskTime, iterateCurrentTaskTime, deleteTask } from '../modules/task/actions';
+import { getTasks, getCurrentTask, setCurrentTaskTime, iterateCurrentTaskTime, deleteTask, stopInterval } from '../modules/task/actions';
 import Home from '../components/home/Home';
 
 class HomeScreen extends Component {
@@ -13,6 +13,10 @@ class HomeScreen extends Component {
     getCategories();
     getCurrentTask();
     getTasks();
+  }
+
+  componentWillUnmount() {
+    stopInterval();
   }
 
   render() {
