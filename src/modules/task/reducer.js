@@ -1,3 +1,4 @@
+import moment, { isMoment, isDate } from 'moment';
 import * as actionTypes from './actionTypes';
 
 const initialState = {
@@ -8,6 +9,12 @@ const initialState = {
   isActiveTask: false,
   currentTask: null,
   currentTaskTime: null,
+  filter: {
+    category: null,
+    startDate: null,
+    endDate: null,
+    tasks: null,
+  },
 };
 
 export default function(state = initialState, action) {
@@ -127,10 +134,39 @@ export default function(state = initialState, action) {
       };
     }
 
-    case actionTypes.CLEAR_INTERVAL: {
+    case actionTypes.FILTER_TASKS: {
+      const filterTasks = [];
+      console.log(action.payload.category);
+      state.tasks.forEach(t => {
+        if (t.Category === action.payload.category || action.payload.category === -1) {
+          if (!isDate(action.payload.startDate) || moment(t.StartTime).isAfter(moment(action.payload.startDate)))
+            if (
+              !isDate(action.payload.endDate) ||
+              (isMoment(moment(action.payload.endDate)) && moment(t.StopTime).isBefore(moment(action.payload.endDate)))
+            )
+              filterTasks.push(t);
+        }
+      });
+
       return {
         ...state,
+        filter: {
+          category: action.payload.category,
+          startDate: action.payload.startDate,
+          endDate: action.payload.endDate,
+          tasks: filterTasks,
+        },
       };
     }
+    case actionTypes.CLEAR_FILTERS:
+      return {
+        ...state,
+        filter: {
+          category: -1,
+          startDate: null,
+          endDate: null,
+          tasks: state.tasks,
+        },
+      };
   }
 }

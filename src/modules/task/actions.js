@@ -111,7 +111,13 @@ export const stopTask = (activityId, stopDate) => dispatch => {
 
 export const stopInterval = () => {
   clearInterval(intervalId);
-  return {
-    type: actionTypes.CLEAR_INTERVAL,
-  };
 };
+
+export const filterTasks = (category, startDate, endDate) => ({
+  type: actionTypes.FILTER_TASKS,
+  payload: { category, startDate, endDate },
+});
+
+export const clearFilters = () => ({
+  type: actionTypes.CLEAR_FILTERS,
+});

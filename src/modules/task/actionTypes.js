@@ -24,3 +24,6 @@ export const STOP_TASK_SUCCESS = `${rootElement}/STOP_TASK_SUCCESS`;
 export const STOP_TASK_FAIL = `${rootElement}/STOP_TASK_FAIL`;
 
 export const CLEAR_INTERVAL = `${rootElement}/STOP_TASK_FAIL`;
+
+export const FILTER_TASKS = `${rootElement}/FILTER_TASKS`;
+export const CLEAR_FILTERS = `${rootElement}/CLEAR_FILTERS`;

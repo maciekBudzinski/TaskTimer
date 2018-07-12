@@ -1,27 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { Modal } from 'react-native';
-import {
-  Container,
-  Content,
-  Form,
-  Picker,
-  DatePicker,
-  Label,
-  Button,
-  Header,
-  Left,
-  Icon,
-  Body,
-  Title,
-  Right,
-} from 'native-base';
+import { Container, Content, Form, Picker, DatePicker, Label, Button, Header, Left, Icon, Body, Title, Right, Text, Toast, View } from 'native-base';
+import styles from '../../helpers/styles';
 
 class FilterModal extends React.Component {
   state = {
-    taskCategory: '',
-    startDate: new Date(),
-    endDate: new Date(),
+    taskCategory: this.props.filter.category,
+    startDate: this.props.filter.startDate,
+    endDate: this.props.filter.endDate,
   };
 
   onPickerChange = value => {
@@ -47,13 +35,24 @@ class FilterModal extends React.Component {
   };
 
   onSubmit = () => {
+    const { filterTasks } = this.props;
     const { taskCategory, startDate, endDate } = this.state;
+    filterTasks(taskCategory, startDate, endDate);
+  };
+
+  onReset = () => {
+    const { closeFilters, clearFilters } = this.props;
+    clearFilters();
+    closeFilters();
+    Toast.show({
+      text: 'Zresetowano filtry',
+      buttonText: 'Ok',
+    });
   };
 
   render() {
     const { closeFilters, categories } = this.props;
-    const { taskCategory } = this.state;
-    console.log(this.state.taskCategory);
+    const { taskCategory, startDate, endDate } = this.state;
     return (
       <Modal onRequestClose={closeFilters}>
         <Container>
@@ -70,40 +69,45 @@ class FilterModal extends React.Component {
               <Button transparent onPress={this.onSubmit}>
                 <Icon name="checkmark" />
               </Button>
+              <Button transparent onPress={this.onReset}>
+                <Icon name="refresh" />
+              </Button>
             </Right>
           </Header>
           <Content style={{ margin: 20 }}>
-            <Form style={{ flex: 3 }}>
+            <Form>
               <Label>Kategoria</Label>
               <Picker
                 mode="dialog"
                 selectedValue={taskCategory}
-                style={{ marginLeft: 10 }}
+                style={[styles.zeroMargin, styles.zeroPadding, { marginLeft: 10 }]}
                 onValueChange={this.onPickerChange}
               >
-                {categories &&
-                  categories.map(c => (
-                    <Picker.Item key={c.pk} label={c.CategoryName} value={c.pk} />
-                  ))}
+                <Picker.Item label="Wszystkie" value={-1} />
+                {categories && categories.map(c => <Picker.Item key={c.pk} label={c.CategoryName} value={c.pk} />)}
               </Picker>
+
               <Label>Data początkowa</Label>
               <DatePicker
+                defaultDate={startDate}
                 locale="pl"
                 androidMode="spinner"
-                placeHolderText="Wybierz datę początkową..."
-                placeHolderTextStyle={{ fontSize: 16 }}
-                textStyle={{ fontSize: 16 }}
+                placeHolderText="Wybierz datę"
+                placeHolderTextStyle={[styles.zeroMargin, styles.zeroPadding, { color: 'gray' }]}
+                textStyle={[styles.zeroMargin, styles.zeroPadding, { color: 'green' }]}
                 onDateChange={this.onStartDateChange}
               />
+              {startDate && <Text style={{ fontSize: 16, paddingLeft: 10 }}>Wybrana data: {moment(startDate).format('DD.MM.YYYY')}</Text>}
               <Label>Data końcowa</Label>
               <DatePicker
                 locale="pl"
                 androidMode="spinner"
-                placeHolderText="Wybierz datę końcową..."
-                placeHolderTextStyle={{ fontSize: 16 }}
-                textStyle={{ fontSize: 16 }}
+                placeHolderText="Wybierz datę"
+                placeHolderTextStyle={[styles.zeroMargin, styles.zeroPadding, { color: 'gray' }]}
+                textStyle={[styles.zeroMargin, styles.zeroPadding, { color: 'green' }]}
                 onDateChange={this.onEndDateChange}
               />
+              {endDate && <Text style={{ fontSize: 16, paddingLeft: 10 }}>Wybrana data: {moment(endDate).format('DD.MM.YYYY')}</Text>}
             </Form>
           </Content>
         </Container>
