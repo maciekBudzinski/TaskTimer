@@ -126,5 +126,11 @@ export default function(state = initialState, action) {
         isLoading: false,
       };
     }
+
+    case actionTypes.CLEAR_INTERVAL: {
+      return {
+        ...state,
+      };
+    }
   }
 }

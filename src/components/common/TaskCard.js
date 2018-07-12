@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import { Text, View, Icon, SwipeRow, Button } from 'native-base';
+import { Alert } from 'react-native';
+import { Text, View, Icon, SwipeRow, Button, Toast } from 'native-base';
 import styles from '../../helpers/styles';
 
 const TaskCard = ({ ...props }) => (
@@ -20,13 +21,57 @@ const TaskCard = ({ ...props }) => (
 const OptionButton = ({ deleteTask, stopTask, taskActive, pk }) => {
   if (taskActive) {
     return (
-      <Button primary onPress={() => stopTask(JSON.stringify(pk), moment().unix())}>
+      <Button
+        primary
+        onPress={() => {
+          Alert.alert(
+            'Zatrzymywanie zadania',
+            'Czy napewno chcesz zatrzymać zadanie?',
+            [
+              { text: 'Nieeeee' },
+              {
+                text: 'Zatrzymaj',
+                onPress: () => {
+                  stopTask(JSON.stringify(pk), moment().unix());
+                  Toast.show({
+                    text: 'Zatrzymano zadanie',
+                    buttonText: 'Ok',
+                  });
+                },
+              },
+            ],
+            { cancelable: false }
+          );
+        }}
+      >
         <Icon active name="square" />
       </Button>
     );
   }
   return (
-    <Button danger onPress={() => deleteTask(pk)}>
+    <Button
+      danger
+      onPress={() => {
+        Alert.alert(
+          'Usuwanie zadania',
+          'Czy napewno chcesz usunąć zadanie?',
+          [
+            { text: 'Niech zostanie' },
+            {
+              text: 'Usuń',
+              onPress: () => {
+                deleteTask(pk);
+                Toast.show({
+                  text: 'Usunięto zadanie',
+                  buttonText: 'Ok',
+                });
+              },
+            },
+          ],
+          { cancelable: false }
+        );
+      }}
+    >
       <Icon active name="trash" />
     </Button>
   );

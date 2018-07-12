@@ -22,3 +22,5 @@ export const DELETE_TASK_FAIL = `${rootElement}/DELETE_TASK_FAIL`;
 export const STOP_TASK = `${rootElement}/STOP_TASK`;
 export const STOP_TASK_SUCCESS = `${rootElement}/STOP_TASK_SUCCESS`;
 export const STOP_TASK_FAIL = `${rootElement}/STOP_TASK_FAIL`;
+
+export const CLEAR_INTERVAL = `${rootElement}/STOP_TASK_FAIL`;

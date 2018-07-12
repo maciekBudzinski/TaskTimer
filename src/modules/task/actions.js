@@ -111,4 +111,7 @@ export const stopTask = (activityId, stopDate) => dispatch => {
 
 export const stopInterval = () => {
   clearInterval(intervalId);
+  return {
+    type: actionTypes.CLEAR_INTERVAL,
+  };
 };

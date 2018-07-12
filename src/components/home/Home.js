@@ -13,9 +13,11 @@ const Home = ({ navigation, closeFilters, filtersOpen, tasks, currentTask, curre
     <AppHeaderScreen title="Twoje zadania" withFilter />
     {filtersOpen && <FilterModal closeFilters={closeFilters} />}
     <TaskList tasks={tasks} currentTaskTime={currentTaskTime} currentTask={currentTask} deleteTask={deleteTask} />
-    <Fab style={{ backgroundColor: `#4050B5` }} onPress={() => navigation.navigate('AddNewTask')}>
-      <Icon name="add" />
-    </Fab>
+    {!currentTask && (
+      <Fab style={{ backgroundColor: `#4050B5` }} onPress={() => navigation.navigate('AddNewTask')}>
+        <Icon name="add" />
+      </Fab>
+    )}
   </Container>
 );
 
