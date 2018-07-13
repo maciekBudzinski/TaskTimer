@@ -1,15 +1,15 @@
 import React from 'react';
 import { Container, Content } from 'native-base';
-import RaportDateForm from './RaportDateForm';
+import ReportDateForm from './ReportDateForm';
 import AppHeaderScreen from '../../containers/AppHeaderScreen';
 
-const RaportDate = () => (
+const ReportDate = props => (
   <Container>
-    <AppHeaderScreen title="Raport" />
+    <AppHeaderScreen title="Report" />
     <Content>
-      <RaportDateForm />
+      <ReportDateForm {...props} />
     </Content>
   </Container>
 );
 
-export default RaportDate;
+export default ReportDate;

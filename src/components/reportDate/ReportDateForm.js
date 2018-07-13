@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNavigation } from 'react-navigation';
 import { Form, Button, Text, DatePicker, Label } from 'native-base';
+import moment from 'moment';
 
-class RaportDateForm extends Component {
+class ReportDateForm extends Component {
   state = {
     startDate: new Date(),
     endDate: new Date(),
@@ -33,9 +34,10 @@ class RaportDateForm extends Component {
   };
 
   onSubmit = () => {
-    const { navigation } = this.props;
-    // const { startDate, endDate } = this.state;
-    navigation.navigate('Raport');
+    const { navigation, getReport } = this.props;
+    const { startDate, endDate } = this.state;
+    getReport(moment(startDate).unix(), moment(endDate).unix());
+    // navigation.navigate('Report');
   };
 
   checkDates = () => {
@@ -86,10 +88,11 @@ class RaportDateForm extends Component {
   }
 }
 
-RaportDateForm.propTypes = {
+ReportDateForm.propTypes = {
+  getReport: PropTypes.func.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
 
-export default withNavigation(RaportDateForm);
+export default withNavigation(ReportDateForm);

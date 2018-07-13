@@ -5,23 +5,23 @@ import { Icon, View } from 'native-base';
 import HomeScreen from '../containers/HomeScreen';
 import StartScreen from '../containers/StartScreen';
 import AddNewCategoryScreen from '../containers/AddNewCategoryScreen';
-import RaportDateScreen from '../containers/RaportDateScreen';
-import RaportScreen from '../containers/RaportScreen';
+import ReportDateScreen from '../containers/ReportDateScreen';
+import ReportScreen from '../containers/ReportScreen';
 import AddNewTaskScreen from '../containers/AddNewTaskScreen';
 import styles from './styles';
 import LogoutButton from '../components/common/LogoutButton';
 
-const RaportNavigation = createStackNavigator(
+const ReportNavigation = createStackNavigator(
   {
-    RaportDate: {
-      screen: RaportDateScreen,
+    ReportDate: {
+      screen: ReportDateScreen,
     },
-    Raport: {
-      screen: RaportScreen,
+    Report: {
+      screen: ReportScreen,
     },
   },
   {
-    initialRouteName: 'RaportDate',
+    initialRouteName: 'ReportDate',
     headerMode: 'none',
   }
 );
@@ -42,8 +42,8 @@ const Drawer = createDrawerNavigator(
         drawerIcon: <Icon name="md-add" />,
       },
     },
-    RaportDate: {
-      screen: RaportNavigation,
+    ReportDate: {
+      screen: ReportNavigation,
       navigationOptions: {
         title: 'Zobacz raporty',
         drawerIcon: <Icon name="md-paper" />,
