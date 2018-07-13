@@ -20,15 +20,9 @@ class RegisterForm extends React.Component {
   };
 
   registeration = (firstName, lastName, email, password, confirmPassword) => {
-    const { customerRegistration, changeForm } = this.props;
+    const { customerRegistration } = this.props;
     if ((firstName, lastName, email, password, confirmPassword)) {
-      customerRegistration(firstName, lastName, email, password, confirmPassword).then(() => {
-        const { isSuccess } = this.props;
-        // eslint-disable-next-line
-        isSuccess ? changeForm('login') : alert('błąd');
-      });
-    } else {
-      alert('Błąd2');
+      customerRegistration(firstName, lastName, email, password, confirmPassword);
     }
   };
 
@@ -71,7 +65,5 @@ class RegisterForm extends React.Component {
 
 RegisterForm.propTypes = {
   customerRegistration: PropTypes.func.isRequired,
-  isSuccess: PropTypes.bool.isRequired,
-  changeForm: PropTypes.func.isRequired,
 };
 export default RegisterForm;

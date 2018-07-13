@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Alert } from 'react-native';
-import { Text, View, Icon, SwipeRow, Button, Toast } from 'native-base';
+import { Text, View, Icon, SwipeRow, Button } from 'native-base';
 import momentPropTypes from 'react-moment-proptypes';
 import styles from '../../helpers/styles';
 
@@ -34,10 +34,6 @@ const OptionButton = ({ deleteTask, stopTask, taskActive, pk }) => {
                 text: 'Zatrzymaj',
                 onPress: () => {
                   stopTask(JSON.stringify(pk), moment().unix());
-                  Toast.show({
-                    text: 'Zatrzymano zadanie',
-                    buttonText: 'Ok',
-                  });
                 },
               },
             ],
@@ -62,10 +58,6 @@ const OptionButton = ({ deleteTask, stopTask, taskActive, pk }) => {
               text: 'Usuń',
               onPress: () => {
                 deleteTask(pk);
-                Toast.show({
-                  text: 'Usunięto zadanie',
-                  buttonText: 'Ok',
-                });
               },
             },
           ],

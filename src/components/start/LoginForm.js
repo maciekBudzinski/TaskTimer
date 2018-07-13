@@ -30,13 +30,10 @@ class LoginForm extends React.Component {
     });
   };
 
-  login = (email, password) => {
+  login = () => {
     const { customerLogin } = this.props;
-    customerLogin(email, password).then(res => {
-      // eslint-disable-next-line
-      this.props.isAuthenticated ? this.handleLoginSuccess(res.payload.data.token) : alert('błąd');
-    });
-    // Tutaj akcja z reduxa, if ok to navigate
+    const { email, password } = this.state;
+    customerLogin(email, password);
   };
 
   render() {
@@ -61,7 +58,7 @@ class LoginForm extends React.Component {
           style={{ width: `100%`, alignItems: 'center', justifyContent: 'center' }}
           primary
           disabled={(email && password) === ''}
-          onPress={() => this.login(email, password)}
+          onPress={this.login}
         >
           <Text>Zaloguj</Text>
         </Button>

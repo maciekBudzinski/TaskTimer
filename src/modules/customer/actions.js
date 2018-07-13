@@ -1,10 +1,13 @@
 import axios from 'axios';
+import { NavigationActions } from 'react-navigation';
+import { Toast } from 'native-base';
 import * as actionTypes from './actionTypes';
+import { changeForm } from '../navigation/actions';
 
 export const customerLogin = (email, password) => dispatch => {
-  const request = () => dispatch({ type: actionTypes.CUSTOMER_LOGIN });
-  const success = response => dispatch({ type: actionTypes.CUSTOMER_LOGIN_SUCCESS, payload: response });
-  const fail = error => dispatch({ type: actionTypes.CUSTOMER_LOGIN_FAIL, payload: error });
+  const request = () => ({ type: actionTypes.CUSTOMER_LOGIN });
+  const success = response => ({ type: actionTypes.CUSTOMER_LOGIN_SUCCESS, payload: response });
+  const fail = error => ({ type: actionTypes.CUSTOMER_LOGIN_FAIL, payload: error });
   dispatch(request());
   axios({
     method: 'post',
@@ -14,14 +17,22 @@ export const customerLogin = (email, password) => dispatch => {
       email,
     },
   })
-    .then(response => dispatch(success(response)))
-    .catch(error => dispatch(fail(error)));
+    .then(response => {
+      dispatch(success(response));
+      dispatch(NavigationActions.navigate({ routeName: 'Home' }));
+      Toast.show({ text: 'Zalogowano pomyślnie', type: 'success' });
+    })
+    .catch(error => {
+      dispatch(fail(error));
+      console.log(error);
+      Toast.show({ text: `Błąd ${error.response.status}. Nie można zalogować`, type: 'danger' });
+    });
 };
 
 export const customerRegistration = (firstName, lastName, email, password, confirmPassword) => dispatch => {
-  const request = () => dispatch({ type: actionTypes.CUSTOMER_REGISTRATION });
-  const success = response => dispatch({ type: actionTypes.CUSTOMER_REGISTRATION_SUCCESS, payload: response });
-  const fail = error => dispatch({ type: actionTypes.CUSTOMER_REGISTRATION_FAIL, payload: error });
+  const request = () => ({ type: actionTypes.CUSTOMER_REGISTRATION });
+  const success = response => ({ type: actionTypes.CUSTOMER_REGISTRATION_SUCCESS, payload: response });
+  const fail = error => ({ type: actionTypes.CUSTOMER_REGISTRATION_FAIL, payload: error });
   dispatch(request());
   axios({
     method: 'post',
@@ -34,8 +45,15 @@ export const customerRegistration = (firstName, lastName, email, password, confi
       confirm_password: confirmPassword,
     },
   })
-    .then(response => dispatch(success(response)))
-    .catch(error => dispatch(fail(error)));
+    .then(response => {
+      dispatch(success(response));
+      dispatch(changeForm('login'));
+      Toast.show({ text: 'Rejestracja przebiegła pomyślnie. Zaloguj się', type: 'success' });
+    })
+    .catch(error => {
+      dispatch(fail(error));
+      Toast.show({ text: `Błąd ${error.response.status}. Nie można zarejestrować użytkownika`, type: 'danger' });
+    });
 };
 
 export const customerLogout = () => ({

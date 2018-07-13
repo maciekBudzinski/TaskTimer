@@ -1,7 +1,6 @@
 import React from 'react';
 import { Provider, connect } from 'react-redux';
 import { AppRegistry } from 'react-native';
-import { addNavigationHelpers } from 'react-navigation';
 import { reduxifyNavigator } from 'react-navigation-redux-helpers';
 import { Root } from 'native-base';
 import configureStore from './src/helpers/configureStore';

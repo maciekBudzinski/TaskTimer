@@ -1,8 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import axios from 'axios';
-import axiosMiddleware from 'redux-axios-middleware';
-import { reduxifyNavigator, createReactNavigationReduxMiddleware, createNavigationReducer } from 'react-navigation-redux-helpers';
+import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers';
 import rootReducer from './rootReducer';
 // const DEVELOPMENT = process.env.NODE_ENV === 'development' ? true : undefined;
 

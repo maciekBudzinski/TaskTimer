@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { NavigationActions } from 'react-navigation';
 import moment from 'moment';
+import { Toast } from 'native-base';
 import * as actionTypes from './actionTypes';
 import { closeFilters } from '../navigation/actions';
 
@@ -58,6 +59,7 @@ export const addTask = (activityName, category, startDate) => dispatch => {
       dispatch(getCurrentTask());
       // FIXME
       setTimeout(() => dispatch(NavigationActions.navigate({ routeName: 'Home' })), 50);
+      Toast.show({ text: 'Dodano zadanie', type: 'success' });
     })
     .catch(error => dispatch(fail(error)));
 };
@@ -84,7 +86,10 @@ export const deleteTask = pk => dispatch => {
     method: 'get',
     url: `/activity/delete?id=${pk}`,
   })
-    .then(response => dispatch(success(response)))
+    .then(response => {
+      dispatch(success(response));
+      Toast.show({ text: 'Usunięto zadanie', type: 'success' });
+    })
     .catch(error => dispatch(fail(error)));
 };
 
@@ -106,6 +111,7 @@ export const stopTask = (activityId, stopDate) => dispatch => {
       dispatch(getCurrentTask());
       dispatch(getTasks());
       clearInterval(intervalId);
+      Toast.show({ text: 'Zatrzymano zadanie', type: 'success' });
     })
     .catch(error => dispatch(fail(error)));
 };
