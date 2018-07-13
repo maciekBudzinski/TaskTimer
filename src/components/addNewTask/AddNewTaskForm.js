@@ -60,7 +60,6 @@ class AddNewTaskForm extends Component {
 AddNewTaskForm.propTypes = {
   categories: PropTypes.array,
   addTask: PropTypes.func.isRequired,
-  taskAdded: PropTypes.bool.isRequired,
 };
 
 AddNewTaskForm.defaultProps = {

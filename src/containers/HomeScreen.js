@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import momentPropTypes from 'react-moment-proptypes';
 import { closeFilters } from '../modules/navigation/actions';
 import { getCategories } from '../modules/categories/actions';
 import {
@@ -36,13 +37,15 @@ class HomeScreen extends Component {
 }
 
 HomeScreen.propTypes = {
-  getCategories: PropTypes.func.isRequired,
-  getTasks: PropTypes.func.isRequired,
-  getCurrentTask: PropTypes.func.isRequired,
-  setCurrentTaskTime: PropTypes.func,
-  iterateCurrentTaskTime: PropTypes.func,
+  categories: PropTypes.array.isRequired,
+  clearFilters: PropTypes.func.isRequired,
   currentTask: PropTypes.object,
-  currentTaskTime: PropTypes.instanceOf(Date),
+  currentTaskTime: momentPropTypes.momentObj,
+  getCategories: PropTypes.func.isRequired,
+  getCurrentTask: PropTypes.func.isRequired,
+  getTasks: PropTypes.func.isRequired,
+  iterateCurrentTaskTime: PropTypes.func,
+  setCurrentTaskTime: PropTypes.func,
 };
 
 HomeScreen.defaultProps = {

@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Fab, Icon, Content, List, ListItem, Separator, Text } from 'native-base';
+import { Container, Fab, Icon } from 'native-base';
 import { withNavigation } from 'react-navigation';
-import TaskCard from '../common/TaskCard';
+import momentPropTypes from 'react-moment-proptypes';
 import FilterModal from './FilterModal';
 import AppHeaderScreen from '../../containers/AppHeaderScreen';
 import TaskList from './TaskList';
-import TaskContainer from '../../containers/TaskContainer';
 
 const Home = ({
   navigation,
@@ -36,15 +35,19 @@ const Home = ({
 );
 
 Home.propTypes = {
+  categories: PropTypes.array.isRequired,
+  clearFilters: PropTypes.func.isRequired,
   closeFilters: PropTypes.func.isRequired,
+  currentTask: PropTypes.object,
+  currentTaskTime: momentPropTypes.momentObj,
+  deleteTask: PropTypes.func.isRequired,
+  filter: PropTypes.object.isRequired,
+  filterTasks: PropTypes.func.isRequired,
   filtersOpen: PropTypes.bool.isRequired,
+  tasks: PropTypes.array.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
-  tasks: PropTypes.array.isRequired,
-  currentTask: PropTypes.object,
-  currentTaskTime: PropTypes.instanceOf(Date),
-  deleteTask: PropTypes.func.isRequired,
 };
 
 Home.defaultProps = {

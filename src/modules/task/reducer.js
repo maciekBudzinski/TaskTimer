@@ -137,7 +137,6 @@ export default function(state = initialState, action) {
 
     case actionTypes.FILTER_TASKS: {
       const filterTasks = [];
-      console.log(action.payload.category);
       state.tasks.forEach(t => {
         if (t.Category === action.payload.category || action.payload.category === -1) {
           if (!isDate(action.payload.startDate) || moment(t.StartTime).isAfter(moment(action.payload.startDate)))

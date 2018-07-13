@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withNavigation } from 'react-navigation';
-import { Form, Button, Text, DatePicker, ListItem, Label } from 'native-base';
+import { Form, Button, Text, DatePicker, Label } from 'native-base';
 
 class RaportDateForm extends Component {
   state = {
@@ -34,7 +34,7 @@ class RaportDateForm extends Component {
 
   onSubmit = () => {
     const { navigation } = this.props;
-    const { startDate, endDate } = this.state;
+    // const { startDate, endDate } = this.state;
     navigation.navigate('Raport');
   };
 
@@ -80,11 +80,7 @@ class RaportDateForm extends Component {
         </Button>
         {!correctDate &&
           touched.startDate &&
-          touched.endDate && (
-            <Label style={{ color: 'red', alignSelf: 'center', padding: 15 }}>
-              Podałeś złe daty
-            </Label>
-          )}
+          touched.endDate && <Label style={{ color: 'red', alignSelf: 'center', padding: 15 }}>Podałeś złe daty</Label>}
       </Form>
     );
   }

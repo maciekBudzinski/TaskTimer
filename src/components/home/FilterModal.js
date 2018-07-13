@@ -2,15 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Modal } from 'react-native';
-import { Container, Content, Form, Picker, DatePicker, Label, Button, Header, Left, Icon, Body, Title, Right, Text, Toast, View } from 'native-base';
+import { Container, Content, Form, Picker, DatePicker, Label, Button, Header, Left, Icon, Body, Title, Right, Text, Toast } from 'native-base';
+import momentPropTypes from 'react-moment-proptypes';
 import styles from '../../helpers/styles';
 
 class FilterModal extends React.Component {
-  state = {
-    taskCategory: this.props.filter.category,
-    startDate: this.props.filter.startDate,
-    endDate: this.props.filter.endDate,
-  };
+  constructor(props) {
+    const { filter } = props;
+
+    super(props);
+    this.state = {
+      taskCategory: filter.category,
+      startDate: filter.startDate,
+      endDate: filter.endDate,
+    };
+  }
 
   onPickerChange = value => {
     this.setState({
@@ -119,7 +125,15 @@ class FilterModal extends React.Component {
   }
 }
 FilterModal.propTypes = {
+  filter: PropTypes.shape({
+    category: PropTypes.number.isRequired,
+    startDate: momentPropTypes.momentObj,
+    endDate: momentPropTypes.momentObj,
+  }).isRequired,
   closeFilters: PropTypes.func.isRequired,
+  filterTasks: PropTypes.func.isRequired,
+  clearFilters: PropTypes.func.isRequired,
+  categories: PropTypes.array.isRequired,
 };
 
 export default FilterModal;

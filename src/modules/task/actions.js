@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { NavigationActions } from 'react-navigation';
 import moment from 'moment';
-import { Toast } from 'native-base';
 import * as actionTypes from './actionTypes';
 import { closeFilters } from '../navigation/actions';
 

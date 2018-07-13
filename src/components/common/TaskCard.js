@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Alert } from 'react-native';
 import { Text, View, Icon, SwipeRow, Button, Toast } from 'native-base';
+import momentPropTypes from 'react-moment-proptypes';
 import styles from '../../helpers/styles';
 
 const TaskCard = ({ ...props }) => (
@@ -79,7 +80,7 @@ const OptionButton = ({ deleteTask, stopTask, taskActive, pk }) => {
 
 class CardBody extends React.Component {
   state = {
-    categoryColor: null,
+    categoryColor: '#000',
     categoryName: null,
   };
 
@@ -97,8 +98,7 @@ class CardBody extends React.Component {
   }
 
   render() {
-    console.log('render');
-    const { ActivityName, Category, StopTime, StartTime, taskActive, currentTaskTime, categories } = this.props;
+    const { ActivityName, StopTime, StartTime, taskActive, currentTaskTime } = this.props;
     const { categoryName, categoryColor } = this.state;
     const timeDiff = moment(moment(StopTime).diff(StartTime)).add(-1, 'hours');
 
@@ -130,26 +130,30 @@ class CardBody extends React.Component {
   }
 }
 
+OptionButton.propTypes = {
+  deleteTask: PropTypes.func.isRequired,
+  stopTask: PropTypes.func.isRequired,
+  taskActive: PropTypes.bool.isRequired,
+  pk: PropTypes.number.isRequired,
+};
+
 CardBody.propTypes = {
   ActivityName: PropTypes.string,
   Category: PropTypes.number,
   StartTime: PropTypes.string,
   taskActive: PropTypes.bool,
   StopTime: PropTypes.string,
-  pk: PropTypes.number,
+  currentTaskTime: momentPropTypes.momentObj,
   categories: PropTypes.array.isRequired,
-  // currentTaskTime: PropTypes.instanceOf(Moment),
 };
 
 CardBody.defaultProps = {
   taskActive: false,
-  pk: -1,
   ActivityName: '',
   StopTime: null,
   currentTaskTime: null,
   Category: null,
   StartTime: null,
-  // categories: [],
 };
 
 TaskCard.propTypes = {

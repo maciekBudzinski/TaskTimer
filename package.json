@@ -14,6 +14,7 @@
     "prettier": "^1.13.6",
     "prop-types": "^15.6.2",
     "react": "16.3.1",
+    "react-moment-proptypes": "^1.6.0",
     "react-native": "0.55.4",
     "react-native-color-wheel": "^0.1.5",
     "react-navigation": "^2.5.5",

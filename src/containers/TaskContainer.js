@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import TaskCard from '../components/common/TaskCard';
-
-import { stopTask, deleteTask, getTasks, getCurrentTask, stopTaskAction } from '../modules/task/actions';
+import { stopTask, deleteTask, getTasks, getCurrentTask } from '../modules/task/actions';
 
 class TaskContainer extends Component {
   render() {
@@ -18,7 +17,6 @@ const mapDispatchToProps = dispatch =>
       stopTask,
       getTasks,
       getCurrentTask,
-      stopTaskAction,
     },
     dispatch
   );

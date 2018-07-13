@@ -13,21 +13,12 @@ class LoginForm extends React.Component {
 
   handleLoginSuccess = token => {
     const { navigation } = this.props;
+    // FIX ME
+    // eslint-disable-next-line
     const _storeData = async () => {
       await AsyncStorage.setItem('jwt', token);
     };
     axios.defaults.headers.common.Authorization = `${'Bearer '}${token}`;
-
-    // const _retriveData = async () => {
-    //   try {
-    //     const value = await AsyncStorage.getItem('jwt');
-    //     if (value !== null) {
-    //       alert('async', value);
-    //     }
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
     navigation.navigate('AppStack');
   };
 

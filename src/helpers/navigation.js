@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import { createStackNavigator, createDrawerNavigator, createSwitchNavigator, DrawerItems } from 'react-navigation';
-import { Icon, View, Text, Footer, label } from 'native-base';
+import { Icon, View } from 'native-base';
 import HomeScreen from '../containers/HomeScreen';
 import StartScreen from '../containers/StartScreen';
 import AddNewCategoryScreen from '../containers/AddNewCategoryScreen';
@@ -10,31 +10,6 @@ import RaportScreen from '../containers/RaportScreen';
 import AddNewTaskScreen from '../containers/AddNewTaskScreen';
 import styles from './styles';
 import LogoutButton from '../components/common/LogoutButton';
-
-// const stackNavigator = createStackNavigator(
-//   {
-//     Raport: {
-//       screen: RaportScreen,
-//     },
-//     RaportDate: {
-//       screen: RaportDateScreen,
-//     },
-//     Home: {
-//       screen: HomeScreen,
-//       navigationOptions: {
-//         title: 'Ekran domowy',
-//       },
-//     },
-//   },
-//   {
-//     headerMode: 'float',
-//     navigationOptions: {
-//       headerStyle: {
-//         backgroundColor: '#113214',
-//       },
-//     },
-//   }
-// );
 
 const RaportNavigation = createStackNavigator(
   {

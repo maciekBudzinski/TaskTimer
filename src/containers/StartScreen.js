@@ -17,8 +17,7 @@ class StartScreen extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ changeForm, customerLogin, customerRegistration }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ changeForm, customerLogin, customerRegistration }, dispatch);
 
 const mapStateToProps = state => ({
   currentForm: state.navigation.currentForm,

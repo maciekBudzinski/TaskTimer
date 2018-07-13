@@ -54,10 +54,7 @@ class RegisterForm extends React.Component {
         </Item>
         <Item stackedLabel>
           <Label>Powtórz hasło</Label>
-          <Input
-            value={confirmPassword}
-            onChangeText={text => this.setState({ confirmPassword: text })}
-          />
+          <Input value={confirmPassword} onChangeText={text => this.setState({ confirmPassword: text })} />
         </Item>
         <Button
           style={{ width: `100%`, alignItems: 'center', justifyContent: 'center' }}

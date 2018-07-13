@@ -26,7 +26,7 @@ class AddNewCategoryForm extends Component {
 
   onSubmit = () => {
     const { categoryName, categoryColor } = this.state;
-    const { addCategory, navigation } = this.props;
+    const { addCategory } = this.props;
     addCategory(categoryName, categoryColor);
   };
 
@@ -60,10 +60,6 @@ class AddNewCategoryForm extends Component {
 
 AddNewCategoryForm.propTypes = {
   addCategory: PropTypes.func.isRequired,
-  isSuccess: PropTypes.bool.isRequired,
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
 };
 
 export default AddNewCategoryForm;
