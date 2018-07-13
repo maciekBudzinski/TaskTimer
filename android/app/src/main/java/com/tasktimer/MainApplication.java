@@ -1,4 +1,4 @@
-package com.myapp;
+package com.tasktimer;
 
 import android.app.Application;
 

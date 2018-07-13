@@ -30,4 +30,4 @@ class index extends React.Component {
 
 export default index;
 
-AppRegistry.registerComponent('MyApp', () => index);
+AppRegistry.registerComponent('TaskTimer', () => index);
