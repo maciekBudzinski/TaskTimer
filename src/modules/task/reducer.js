@@ -14,6 +14,7 @@ const initialState = {
     startDate: null,
     endDate: null,
     tasks: null,
+    active: false,
   },
 };
 
@@ -151,10 +152,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         filter: {
+          ...state.filter,
           category: action.payload.category,
           startDate: action.payload.startDate,
           endDate: action.payload.endDate,
           tasks: filterTasks,
+          active: true,
         },
       };
     }
@@ -162,10 +165,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         filter: {
+          ...state.filter,
           category: -1,
           startDate: null,
           endDate: null,
           tasks: state.tasks,
+          active: false,
         },
       };
   }

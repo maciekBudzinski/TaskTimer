@@ -18,7 +18,7 @@ export default function configureStore(initialState) {
 
   axios.defaults.baseURL = 'http://trynich.nazwa.pl:8000/';
   axios.defaults.headers.common.Authorization =
-    'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MzE0MTA4ODgsImVtYWlsIjoidXNlckB1c2VyLnBsIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJ1c2VyQHVzZXIucGwifQ.w5y-WaJjBhsahKa8G2FG03gYjWtEti46UibaBpks2ZU';
+    'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InVzZXJAdXNlci5wbCIsInVzZXJfaWQiOjEsImVtYWlsIjoidXNlckB1c2VyLnBsIiwiZXhwIjoxNTMxNDk3Mzk4fQ.lO36QtrVDcI94HkvouWdb49ZYUSIbAnxrJBF8E_ylc0';
 
   const reactNavigationReduxMiddleware = createReactNavigationReduxMiddleware('root', state => state.nav);
 

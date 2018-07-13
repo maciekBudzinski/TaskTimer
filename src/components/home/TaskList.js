@@ -42,7 +42,7 @@ const TaskList = ({ tasks, currentTask, currentTaskTime }) => {
         <Icon name="time" />
         <Text style={{ paddingLeft: 5, fontSize: 20 }}>Poprzednie zadania</Text>
       </View>
-      <ScrollView>{tasks && tasks.map(t => <TaskContainer key={t.pk} {...t} />)}</ScrollView>
+      {tasks.Length !== 0 ? <ScrollView>{tasks.map(t => <TaskContainer key={t.pk} {...t} />)}</ScrollView> : <Text>Brak zadań </Text>}
     </View>
   );
 };

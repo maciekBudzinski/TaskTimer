@@ -38,6 +38,9 @@ class FilterModal extends React.Component {
     const { filterTasks } = this.props;
     const { taskCategory, startDate, endDate } = this.state;
     filterTasks(taskCategory, startDate, endDate);
+    Toast.show({
+      text: 'Zastosowano filtry',
+    });
   };
 
   onReset = () => {
@@ -87,7 +90,7 @@ class FilterModal extends React.Component {
                 {categories && categories.map(c => <Picker.Item key={c.pk} label={c.CategoryName} value={c.pk} />)}
               </Picker>
 
-              <Label>Data początkowa</Label>
+              <Label style={{ paddingVertical: 10 }}>Data początkowa</Label>
               <DatePicker
                 defaultDate={startDate}
                 locale="pl"
@@ -98,7 +101,7 @@ class FilterModal extends React.Component {
                 onDateChange={this.onStartDateChange}
               />
               {startDate && <Text style={{ fontSize: 16, paddingLeft: 10 }}>Wybrana data: {moment(startDate).format('DD.MM.YYYY')}</Text>}
-              <Label>Data końcowa</Label>
+              <Label style={{ paddingVertical: 10 }}>Data końcowa</Label>
               <DatePicker
                 locale="pl"
                 androidMode="spinner"

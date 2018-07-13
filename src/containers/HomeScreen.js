@@ -18,7 +18,7 @@ import Home from '../components/home/Home';
 
 class HomeScreen extends Component {
   componentDidMount() {
-    const { getCategories, getTasks, getCurrentTask } = this.props;
+    const { getCategories, getTasks, getCurrentTask, clearFilters } = this.props;
     getCategories();
     getCurrentTask();
     getTasks();

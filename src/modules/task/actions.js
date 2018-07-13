@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { NavigationActions } from 'react-navigation';
 import moment from 'moment';
+import { Toast } from 'native-base';
 import * as actionTypes from './actionTypes';
+import { closeFilters } from '../navigation/actions';
 
 let intervalId;
 
@@ -113,10 +115,15 @@ export const stopInterval = () => {
   clearInterval(intervalId);
 };
 
-export const filterTasks = (category, startDate, endDate) => ({
+const filterAction = (category, startDate, endDate) => ({
   type: actionTypes.FILTER_TASKS,
   payload: { category, startDate, endDate },
 });
+
+export const filterTasks = (category, startDate, endDate) => dispatch => {
+  dispatch(filterAction(category, startDate, endDate));
+  dispatch(closeFilters());
+};
 
 export const clearFilters = () => ({
   type: actionTypes.CLEAR_FILTERS,

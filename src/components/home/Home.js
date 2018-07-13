@@ -26,7 +26,7 @@ const Home = ({
     {filtersOpen && (
       <FilterModal closeFilters={closeFilters} categories={categories} filterTasks={filterTasks} clearFilters={clearFilters} filter={filter} />
     )}
-    <TaskList tasks={tasks} currentTaskTime={currentTaskTime} currentTask={currentTask} deleteTask={deleteTask} />
+    <TaskList tasks={filter.active ? filter.tasks : tasks} currentTaskTime={currentTaskTime} currentTask={currentTask} deleteTask={deleteTask} />
     {!currentTask && (
       <Fab style={{ backgroundColor: `#4050B5` }} onPress={() => navigation.navigate('AddNewTask')}>
         <Icon name="add" />
