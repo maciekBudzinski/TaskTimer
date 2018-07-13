@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { AsyncStorage } from 'react-native';
 import PropTypes from 'prop-types';
 import momentPropTypes from 'react-moment-proptypes';
+import axios from 'axios';
 import { closeFilters } from '../modules/navigation/actions';
 import { getCategories } from '../modules/categories/actions';
 import {
@@ -19,11 +21,21 @@ import Home from '../components/home/Home';
 
 class HomeScreen extends Component {
   componentDidMount() {
-    const { getCategories, getTasks, getCurrentTask, clearFilters } = this.props;
-    getCategories();
-    getCurrentTask();
-    getTasks();
-    clearFilters();
+    const { getCategories, getTasks, getCurrentTask, clearFilters, navigation } = this.props;
+    AsyncStorage.getItem('token')
+      .then(value => {
+        if (value.length > 0) {
+          axios.defaults.headers.common.Authorization = `Bearer ${value}`;
+          getCategories();
+          getCurrentTask();
+          getTasks();
+          clearFilters();
+        }
+      })
+      .catch(error => {
+        console.log('e', error);
+        navigation.navigate('Auth');
+      });
   }
 
   componentWillUnmount() {
@@ -46,6 +58,9 @@ HomeScreen.propTypes = {
   getTasks: PropTypes.func.isRequired,
   iterateCurrentTaskTime: PropTypes.func,
   setCurrentTaskTime: PropTypes.func,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 HomeScreen.defaultProps = {

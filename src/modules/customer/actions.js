@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { NavigationActions } from 'react-navigation';
 import { Toast } from 'native-base';
+import { AsyncStorage } from 'react-native';
 import * as actionTypes from './actionTypes';
 import { changeForm } from '../navigation/actions';
 
@@ -18,6 +19,8 @@ export const customerLogin = (email, password) => dispatch => {
     },
   })
     .then(response => {
+      AsyncStorage.setItem('token', response.data.token);
+      axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
       dispatch(success(response));
       dispatch(NavigationActions.navigate({ routeName: 'Home' }));
       Toast.show({ text: 'Zalogowano pomyślnie', type: 'success' });
@@ -56,6 +59,11 @@ export const customerRegistration = (firstName, lastName, email, password, confi
     });
 };
 
-export const customerLogout = () => ({
-  type: actionTypes.CUSTOMER_LOGOUT,
-});
+export const customerLogout = () => dispatch => {
+  dispatch(() => {
+    AsyncStorage.removeItem('token')
+      .then(value => console.log(value))
+      .catch(error => console.log(error));
+    axios.defaults.headers.common.Authorization = null;
+  });
+};
