@@ -1,15 +1,12 @@
 import React from 'react';
-import { Text, View } from 'native-base';
-import { PieChart } from 'react-native-svg-charts';
+import { View } from 'native-base';
+import ReportChart from './ReportChart';
+import ReportLegend from './ReportLegend';
 
-const Report = ({ categories, reportData }) => {
-  const data = reportData.map(rd => ({ key: rd.categoryId, amount: rd.time, svg: { fill: '#600080' } }));
-  console.log(data);
-  return (
-    <View>
-      <Text>Report</Text>
-      <PieChart style={{ height: 200 }} valueAccessor={({ item }) => item.amount} data={data} spacing={0} outerRadius="95%" />
-    </View>
-  );
-};
+const Report = props => (
+  <View>
+    <ReportChart {...props} />
+    <ReportLegend {...props} />
+  </View>
+);
 export default Report;
