@@ -7,6 +7,7 @@ import AppHeader from '../common/AppHeader';
 
 const Report = props => {
   const { reportData } = props;
+
   return (
     <Container>
       <AppHeader title="Raport" stack />
