@@ -1,4 +1,9 @@
 {
   "name": "TaskTimer",
-  "displayName": "Task Timer"
+  "displayName": "Task Timer",
+  "expo": {
+    "name": "myApp",
+    "slug": "my-app",
+    "sdkVersion": "18.0.0"
+  }
 }
