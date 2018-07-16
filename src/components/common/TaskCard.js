@@ -108,7 +108,9 @@ class CardBody extends React.Component {
           </View>
         </View>
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={{ fontSize: 24, fontWeight: '400' }}>{ActivityName}</Text>
+          <Text style={{ fontSize: 24, fontWeight: '400' }}>
+            {ActivityName.length > 15 ? `${ActivityName.substring(0, 12)}...` : `${ActivityName}`}
+          </Text>
           {taskActive === true && (
             <Text style={{ fontSize: 24, fontWeight: '400', color: 'green' }}>
               {/* {time} */}

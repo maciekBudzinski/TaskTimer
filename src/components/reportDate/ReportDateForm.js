@@ -34,10 +34,9 @@ class ReportDateForm extends Component {
   };
 
   onSubmit = () => {
-    const { navigation, getReport } = this.props;
+    const { getReport } = this.props;
     const { startDate, endDate } = this.state;
     getReport(moment(startDate).unix(), moment(endDate).unix());
-    // navigation.navigate('Report');
   };
 
   checkDates = () => {
@@ -90,9 +89,6 @@ class ReportDateForm extends Component {
 
 ReportDateForm.propTypes = {
   getReport: PropTypes.func.isRequired,
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
 };
 
 export default withNavigation(ReportDateForm);

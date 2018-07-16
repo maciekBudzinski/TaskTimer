@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Fab, Icon } from 'native-base';
+import { Container, Fab, Icon, Content, View, Text } from 'native-base';
 import { withNavigation } from 'react-navigation';
 import momentPropTypes from 'react-moment-proptypes';
 import FilterModal from './FilterModal';
 import AppHeaderScreen from '../../containers/AppHeaderScreen';
 import TaskList from './TaskList';
+import TaskContainer from '../../containers/TaskContainer';
 
 const Home = ({
   navigation,
@@ -25,7 +26,25 @@ const Home = ({
     {filtersOpen && (
       <FilterModal closeFilters={closeFilters} categories={categories} filterTasks={filterTasks} clearFilters={clearFilters} filter={filter} />
     )}
-    <TaskList tasks={filter.active ? filter.tasks : tasks} currentTaskTime={currentTaskTime} currentTask={currentTask} deleteTask={deleteTask} />
+    <View>
+      {currentTask && <TaskContainer {...currentTask} taskActive currentTaskTime={currentTaskTime} />}
+      <View
+        style={{
+          alignItems: 'center',
+          backgroundColor: 'gray',
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          paddingVertical: 5,
+        }}
+      >
+        <Icon name="time" />
+        <Text style={{ paddingLeft: 5, fontSize: 20 }}>Poprzednie zadania</Text>
+      </View>
+    </View>
+    <Content>
+      <TaskList tasks={filter.active ? filter.tasks : tasks} currentTaskTime={currentTaskTime} currentTask={currentTask} deleteTask={deleteTask} />
+    </Content>
     {!currentTask && (
       <Fab style={{ backgroundColor: `#4050B5` }} onPress={() => navigation.navigate('AddNewTask')}>
         <Icon name="add" />

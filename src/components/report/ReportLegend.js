@@ -13,7 +13,7 @@ const ReportLegend = ({ reportData, categories }) => {
       <Text style={{ alignSelf: 'center', fontWeight: '500', paddingTop: 10 }}>Legenda</Text>
       <List>
         {data.map(e => (
-          <ListItem key={e.pk} style={{ display: 'flex', flexDirection: 'row' }}>
+          <ListItem key={e.time} style={{ display: 'flex', flexDirection: 'row' }}>
             <Icon name="bookmark" style={{ color: `${e.category.Color}` }} />
             <Text>
               {'  '}

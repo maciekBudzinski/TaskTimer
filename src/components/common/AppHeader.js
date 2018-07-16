@@ -34,7 +34,7 @@ const AppHeader = ({ title, navigation, withFilter, openFilters, stack }) => {
 AppHeader.propTypes = {
   title: PropTypes.string.isRequired,
   stack: PropTypes.bool,
-  openFilters: PropTypes.func.isRequired,
+  openFilters: PropTypes.func,
   withFilter: PropTypes.bool,
   navigation: PropTypes.shape({
     openDrawer: PropTypes.func,
@@ -45,6 +45,7 @@ AppHeader.propTypes = {
 AppHeader.defaultProps = {
   withFilter: false,
   stack: false,
+  openFilters: () => {},
 };
 
 export default withNavigation(AppHeader);
